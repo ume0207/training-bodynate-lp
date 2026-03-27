@@ -109,41 +109,62 @@
     }
     .hero-ov {
       position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(224,114,142,.18) 0%, rgba(0,0,0,.22) 45%, rgba(80,20,45,.82) 100%);
+      background: linear-gradient(
+        to bottom,
+        rgba(40,10,25,.15) 0%,
+        rgba(20,5,15,.3) 35%,
+        rgba(60,15,40,.75) 70%,
+        rgba(60,15,40,.92) 100%
+      );
     }
-    /* モバイル: テキストエリア */
+    /* サブコピーバナー（上部） */
+    .hero-sub {
+      position: absolute; top: 72px; left: 20px; z-index: 3;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .hero-sub-badge {
+      background: var(--yellow);
+      color: #5a3000; font-size: 11px; font-weight: 900; letter-spacing: 1px;
+      padding: 5px 12px; border-radius: 4px;
+      white-space: nowrap;
+    }
+    .hero-sub-txt {
+      color: rgba(255,255,255,.9); font-size: 12px; font-weight: 700; letter-spacing: .5px;
+      white-space: nowrap;
+    }
+    /* テキストエリア */
     .hero-text {
       position: relative; z-index: 2;
-      padding: 0 20px 24px;
-    }
-    .hero-tag {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--yellow) 0%, #fbbf84 100%);
-      color: #6b3a1f;
-      font-size: 11px; font-weight: 700; letter-spacing: 1px;
-      padding: 5px 14px; border-radius: 20px; margin-bottom: 14px;
+      padding: 0 20px 28px;
     }
     .hero-h1 {
       font-family: 'Noto Serif JP', serif;
-      font-size: clamp(28px, 7.5vw, 72px);
-      font-weight: 900; color: #fff; line-height: 1.4;
-      margin-bottom: 14px;
+      font-size: clamp(32px, 9vw, 80px);
+      font-weight: 900; color: #fff; line-height: 1.3;
+      margin-bottom: 6px;
       word-break: normal; overflow-wrap: break-word;
-      text-shadow: 0 2px 16px rgba(0,0,0,.4);
+      text-shadow: 0 3px 20px rgba(0,0,0,.5);
+      letter-spacing: .02em;
     }
     .hero-h1 em { font-style: normal; color: var(--yellow); }
+    /* サブキャッチ（英語） */
+    .hero-en {
+      font-size: 11px; letter-spacing: 3px; color: rgba(255,255,255,.55);
+      text-transform: uppercase; margin-bottom: 14px; font-weight: 400;
+    }
     .hero-desc {
-      font-size: 13px; color: rgba(255,255,255,.9);
-      line-height: 1.9; margin-bottom: 20px;
-      font-weight: 300; word-break: normal; overflow-wrap: break-word;
+      font-size: 13px; color: rgba(255,255,255,.88);
+      line-height: 1.9; margin-bottom: 22px;
+      font-weight: 400; word-break: normal; overflow-wrap: break-word;
+      border-left: 3px solid var(--yellow);
+      padding-left: 10px;
     }
     .hero-desc strong { color: #fff; font-weight: 700; }
-    /* モバイル: ボタン縦並び */
     .hero-btns { display: flex; flex-direction: column; gap: 10px; }
-    /* モバイル: 価格バー */
+    /* 価格バー */
     .hero-bar {
       position: relative; z-index: 2;
-      background: rgba(255,255,255,.95);
+      background: rgba(255,255,255,.97);
       margin: 0 16px;
       border-radius: 12px 12px 0 0;
       padding: 14px 18px;
@@ -154,14 +175,62 @@
     .hbar-price { font-family: 'Noto Serif JP', serif; font-size: 34px; font-weight: 900; color: #2e1c1b; line-height: 1; }
     .hbar-price small { font-size: 13px; font-weight: 400; }
 
+    /* ===== 3つの理由セクション ===== */
+    .reasons {
+      background: #fff;
+      padding: 0 0 4px;
+    }
+    .reasons-head {
+      background: linear-gradient(135deg, var(--red) 0%, #f48aa5 100%);
+      padding: 18px 20px;
+      text-align: center;
+    }
+    .reasons-head-txt {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(16px, 4.5vw, 26px);
+      font-weight: 900; color: #fff; letter-spacing: .05em;
+    }
+    .reasons-head-txt span {
+      background: var(--yellow); color: #5a3000;
+      padding: 0 6px; margin: 0 3px; border-radius: 3px;
+    }
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-top: 3px solid var(--red);
+    }
+    .reason-item {
+      padding: 18px 12px 20px;
+      text-align: center;
+      border-right: 1px solid #f0d0da;
+      background: #fff;
+    }
+    .reason-item:last-child { border-right: none; }
+    .reason-num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 11px; font-weight: 900; color: var(--red);
+      letter-spacing: 1px; margin-bottom: 6px;
+    }
+    .reason-icon { font-size: 26px; margin-bottom: 6px; line-height: 1; }
+    .reason-ttl {
+      font-size: clamp(10px, 2.8vw, 13px); font-weight: 900; color: #2e1c1b;
+      line-height: 1.5; margin-bottom: 6px;
+      word-break: normal; overflow-wrap: break-word;
+    }
+    .reason-ttl em { font-style: normal; color: var(--red); }
+    .reason-txt {
+      font-size: clamp(9px, 2.2vw, 11px); color: var(--mid);
+      line-height: 1.7; word-break: normal; overflow-wrap: break-word;
+    }
+
     @media (min-width: 768px) {
       .hero { flex-direction: row; align-items: flex-end; }
-      .hero-text { padding: 0 64px 80px; max-width: 680px; }
-      .hero-h1 { font-size: clamp(42px, 5.5vw, 80px); margin-bottom: 20px; }
-      .hero-desc { font-size: 16px; }
+      .hero-sub { top: 88px; left: 64px; }
+      .hero-text { padding: 0 64px 80px; max-width: 720px; }
+      .hero-h1 { font-size: clamp(48px, 6vw, 86px); margin-bottom: 10px; }
+      .hero-desc { font-size: 15px; }
       .hero-btns { flex-direction: row; }
       .hero-bar { display: none; }
-      /* デスクトップ: 価格バッジ */
       .hero-badge {
         position: absolute; right: 56px; bottom: 80px; z-index: 2;
         background: rgba(255,255,255,.96);
@@ -172,6 +241,11 @@
       .hb-price { font-family: 'Noto Serif JP', serif; font-size: 44px; font-weight: 900; color: #2e1c1b; line-height: 1; }
       .hb-price small { font-size: 17px; font-weight: 400; }
       .hb-note { font-size: 11px; color: var(--mid); margin-top: 4px; }
+      /* PCでは理由グリッド広げる */
+      .reason-item { padding: 28px 20px 30px; }
+      .reason-icon { font-size: 36px; }
+      .reason-ttl { font-size: 15px; }
+      .reason-txt { font-size: 12px; }
     }
     @media (max-width: 767px) { .hero-badge { display: none; } }
 
@@ -556,17 +630,22 @@
     <div class="hb-price"><small>¥</small>1,100</div>
     <div class="hb-note">50分 / 完全予約制</div>
   </div>
+  <!-- サブコピー（上部） -->
+  <div class="hero-sub">
+    <span class="hero-sub-badge">理学療法士が担当</span>
+    <span class="hero-sub-txt">神戸三宮のパーソナルジム</span>
+  </div>
   <div class="hero-text">
-    <div class="hero-tag">✨ 理学療法士が担当 ／ 神戸三宮</div>
+    <p class="hero-en">Personal Training × Seitai × Motion Analysis</p>
     <h1 class="hero-h1">
-      ダイエット、<br>
-      何度も挫折した私が<br>
-      <em>3ヶ月で変われた理由。</em>
+      何度挫折しても<br>
+      <em>大丈夫。</em><br>
+      あなたの体は<br>
+      必ず変わります。
     </h1>
     <p class="hero-desc">
-      <strong>動作分析 × 整体 × パーソナルトレーニング</strong><br>
-      理学療法士が「変われない本当の原因」を<br>
-      見つけて、一緒に解決します。
+      <strong>理学療法士だから「変われない本当の原因」がわかる。</strong><br>
+      動作分析で根本から解決するから、続けられます。
     </p>
     <div class="hero-btns">
       <a href="#reserve" class="btn-red">体験レッスン予約（1,100円）→</a>
@@ -581,6 +660,33 @@
     <div class="hbar-price"><small>¥</small>1,100</div>
   </div>
 </section>
+
+<!-- ===== 3つの理由（ヒーロー直下） ===== -->
+<div class="reasons">
+  <div class="reasons-head">
+    <div class="reasons-head-txt">Body Nateが選ばれる<span>3つ</span>の理由</div>
+  </div>
+  <div class="reasons-grid">
+    <div class="reason-item">
+      <div class="reason-num">REASON 01</div>
+      <div class="reason-icon">🩺</div>
+      <div class="reason-ttl"><em>理学療法士</em>が<br>マンツーマン担当</div>
+      <p class="reason-txt">医療国家資格者が骨格・動作を科学的に分析。安全に・確実に結果を出します。</p>
+    </div>
+    <div class="reason-item">
+      <div class="reason-num">REASON 02</div>
+      <div class="reason-icon">🔍</div>
+      <div class="reason-ttl"><em>動作分析</em>で<br>原因を特定</div>
+      <p class="reason-txt">なんとなく運動ではなく「変われない理由」を明確にしてから始めるから効果が違います。</p>
+    </div>
+    <div class="reason-item">
+      <div class="reason-num">REASON 03</div>
+      <div class="reason-icon">✨</div>
+      <div class="reason-ttl"><em>整体＋トレーニング</em><br>のW効果</div>
+      <p class="reason-txt">骨格を整えてから鍛えるから、腰痛・肩こりも同時に改善。続けやすい体に。</p>
+    </div>
+  </div>
+</div>
 
 <!-- MARQUEE -->
 <div class="mq-wrap">
