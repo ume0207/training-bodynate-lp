@@ -5,1152 +5,917 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Body Nate 神戸三宮店｜理学療法士が担当するパーソナルトレーニング</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
   <style>
+    /* ===== RESET & BASE ===== */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --black: #0d0d0d;
-      --dark: #1a1514;
-      --rose: #c07a72;
-      --rose-light: #e8d0cc;
-      --rose-pale: #faf4f3;
-      --cream: #faf8f5;
-      --gold: #c9a882;
-      --white: #ffffff;
-      --text: #1a1514;
-      --text-mid: #5a4a47;
-      --text-light: #9a8885;
+    html, body {
+      overflow-x: hidden;
+      max-width: 100%;
     }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Noto Sans JP', sans-serif;
-      color: var(--text);
-      background: var(--cream);
-      overflow-x: hidden;
+      background: #fffbfc;
+      color: #2e1c1b;
+      width: 100%;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* ===== VARIABLES ===== */
+    :root {
+      --red:   #e0728e;
+      --red2:  #f4adc2;
+      --pale:  #fff5f8;
+      --blush: #fde8f1;
+      --white: #ffffff;
+      --mid:   #7a4455;
+      --light: #c499ac;
+      --yellow: #fde68a;
     }
 
-    /* ===== SCROLL ANIMATIONS ===== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-left {
-      opacity: 0;
-      transform: translateX(-50px);
-      transition: opacity 0.9s ease, transform 0.9s ease;
-    }
-    .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right {
-      opacity: 0;
-      transform: translateX(50px);
-      transition: opacity 0.9s ease, transform 0.9s ease;
-    }
-    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    /* ===== TEXT OVERFLOW FIX ===== */
+    /* 日本語テキストの折り返し修正 */
+    p, li { overflow-wrap: break-word; word-break: normal; }
+    /* flex/grid の子要素が縮まるように min-width: 0 を設定 */
+    .grid2 > * { min-width: 0; }
+    .ptc > div:last-child { min-width: 0; flex: 1; overflow: hidden; }
+    .c-item > span:last-child { min-width: 0; flex: 1; overflow-wrap: break-word; }
+    .mstep > div:last-child { min-width: 0; flex: 1; overflow: hidden; }
+    .vc-profile > div { min-width: 0; overflow: hidden; }
+    /* テキスト要素の横幅制限 */
+    .ptc-txt, .vc-txt, .lead, .t-bio, .mc-desc { overflow-wrap: break-word; word-break: normal; max-width: 100%; }
+    .tc { text-align: center; }
+    .tl { text-align: left; }
 
-    /* ===== FLOATING CTA ===== */
-    .float-cta {
-      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
-      background: var(--rose); color: white;
-      padding: 16px 28px; border-radius: 50px;
-      text-decoration: none; font-weight: 700; font-size: 14px;
-      letter-spacing: 0.5px;
-      box-shadow: 0 8px 30px rgba(192,122,114,0.45);
-      display: flex; align-items: center; gap: 8px;
-      transition: all 0.3s;
+    /* ===== REVEAL ANIMATION ===== */
+    .rv { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s ease; }
+    .rv.on { opacity: 1; transform: none; }
+
+    /* ===== FLOAT CTA ===== */
+    .fcta {
+      position: fixed; bottom: 16px; right: 12px; z-index: 999;
+      background: var(--red); color: #fff;
+      padding: 12px 18px; border-radius: 50px; font-size: 13px; font-weight: 700;
+      text-decoration: none; display: flex; align-items: center; gap: 7px;
+      box-shadow: 0 4px 18px rgba(224,114,142,.45);
+      white-space: nowrap;
     }
-    .float-cta:hover {
-      background: #a05e58; transform: translateY(-3px);
-      box-shadow: 0 14px 40px rgba(192,122,114,0.55);
-    }
-    .float-cta-dot {
-      width: 8px; height: 8px; background: #fff;
-      border-radius: 50%; animation: blink 1.5s infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .dot { width: 7px; height: 7px; background: #fff; border-radius: 50%; animation: blink 1.4s infinite; flex-shrink: 0; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
 
     /* ===== HEADER ===== */
     header {
-      position: fixed; top: 0; width: 100%; z-index: 1000;
-      padding: 18px 40px;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 998;
+      padding: 12px 16px;
       display: flex; justify-content: space-between; align-items: center;
-      transition: all 0.4s;
     }
-    header.scrolled {
-      background: rgba(13,13,13,0.92);
-      backdrop-filter: blur(20px);
-      padding: 14px 40px;
+    header.sc {
+      background: rgba(255,250,249,.97);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 1px 12px rgba(224,114,142,.08);
     }
-    .logo-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px; font-weight: 700;
-      color: white; letter-spacing: 2px;
+    .logo { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 900; color: #fff; letter-spacing: 1px; }
+    .logo b { color: rgba(255,200,195,.9); }
+    .logo-sub { font-size: 8px; color: rgba(255,255,255,.5); letter-spacing: 2px; display: block; text-transform: uppercase; }
+    header.sc .logo { color: #2e1c1b; }
+    header.sc .logo b { color: var(--red); }
+    header.sc .logo-sub { color: var(--light); }
+    .hcta {
+      border: 1.5px solid rgba(255,255,255,.8); color: #fff;
+      padding: 8px 16px; border-radius: 50px; font-size: 12px; font-weight: 700;
+      text-decoration: none; white-space: nowrap;
     }
-    .logo-text em {
-      font-style: italic; color: var(--rose-light);
-    }
-    .logo-sub {
-      font-size: 10px; color: rgba(255,255,255,0.5);
-      letter-spacing: 3px; text-transform: uppercase;
-      display: block; margin-top: 2px;
-    }
-    .header-cta {
-      background: transparent; border: 1.5px solid rgba(255,255,255,0.6);
-      color: white; padding: 10px 24px; border-radius: 30px;
-      text-decoration: none; font-size: 13px; font-weight: 500;
-      letter-spacing: 1px; transition: all 0.3s;
-    }
-    .header-cta:hover {
-      background: var(--rose); border-color: var(--rose);
+    header.sc .hcta { border-color: var(--red); color: var(--red); background: transparent; }
+
+    @media (min-width: 768px) {
+      header { padding: 16px 48px; }
+      .logo { font-size: 24px; }
+      .hcta { padding: 10px 24px; font-size: 13px; }
     }
 
     /* ===== HERO ===== */
     .hero {
-      position: relative; height: 100vh; min-height: 700px;
-      display: flex; align-items: flex-end;
-      overflow: hidden; background: var(--black);
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
     }
-    .hero-video {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; opacity: 0.55;
-    }
-    .hero-overlay {
+    .hero-bg {
       position: absolute; inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(13,13,13,0.2) 0%,
-        rgba(13,13,13,0.1) 40%,
-        rgba(13,13,13,0.75) 80%,
-        rgba(13,13,13,0.92) 100%
-      );
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 20%;
     }
-    .hero-content {
+    .hero-ov {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(224,114,142,.18) 0%, rgba(0,0,0,.22) 45%, rgba(80,20,45,.82) 100%);
+    }
+    /* モバイル: テキストエリア */
+    .hero-text {
       position: relative; z-index: 2;
-      padding: 0 60px 80px; width: 100%;
-      display: flex; justify-content: space-between; align-items: flex-end;
+      padding: 0 20px 24px;
     }
-    .hero-left { max-width: 700px; }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 10px;
-      color: var(--rose-light); font-size: 12px; font-weight: 500;
-      letter-spacing: 4px; text-transform: uppercase; margin-bottom: 24px;
+    .hero-tag {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--yellow) 0%, #fbbf84 100%);
+      color: #6b3a1f;
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      padding: 5px 14px; border-radius: 20px; margin-bottom: 14px;
     }
-    .hero-eyebrow::before {
-      content: ''; width: 40px; height: 1px; background: var(--rose-light);
+    .hero-h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(28px, 7.5vw, 72px);
+      font-weight: 900; color: #fff; line-height: 1.4;
+      margin-bottom: 14px;
+      word-break: normal; overflow-wrap: break-word;
+      text-shadow: 0 2px 16px rgba(0,0,0,.4);
     }
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(48px, 7vw, 88px);
-      font-weight: 900; color: white; line-height: 1.1;
-      margin-bottom: 28px;
-    }
-    .hero-title em {
-      font-style: italic; color: var(--rose-light);
-      display: block;
-    }
+    .hero-h1 em { font-style: normal; color: var(--yellow); }
     .hero-desc {
-      color: rgba(255,255,255,0.75); font-size: 16px;
-      line-height: 2; max-width: 520px; margin-bottom: 40px;
-      font-weight: 300;
+      font-size: 13px; color: rgba(255,255,255,.9);
+      line-height: 1.9; margin-bottom: 20px;
+      font-weight: 300; word-break: normal; overflow-wrap: break-word;
     }
-    .hero-btns { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-block; background: var(--rose); color: white;
-      padding: 18px 44px; border-radius: 50px; font-size: 15px; font-weight: 700;
-      text-decoration: none; letter-spacing: 1px;
-      transition: all 0.3s;
-      box-shadow: 0 8px 30px rgba(192,122,114,0.4);
+    .hero-desc strong { color: #fff; font-weight: 700; }
+    /* モバイル: ボタン縦並び */
+    .hero-btns { display: flex; flex-direction: column; gap: 10px; }
+    /* モバイル: 価格バー */
+    .hero-bar {
+      position: relative; z-index: 2;
+      background: rgba(255,255,255,.95);
+      margin: 0 16px;
+      border-radius: 12px 12px 0 0;
+      padding: 14px 18px;
+      display: flex; justify-content: space-between; align-items: center;
     }
-    .btn-primary:hover {
-      background: #a05e58; transform: translateY(-3px);
-      box-shadow: 0 14px 40px rgba(192,122,114,0.5);
-    }
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 8px;
-      color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 500;
-      text-decoration: none; letter-spacing: 1px;
-      transition: color 0.3s;
-    }
-    .btn-ghost:hover { color: var(--rose-light); }
-    .btn-ghost::after { content: '→'; }
-    .hero-right {
-      text-align: right; color: rgba(255,255,255,0.6);
-      font-size: 12px; letter-spacing: 2px;
-    }
-    .hero-price-badge {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 20px 28px; border-radius: 16px; text-align: center;
-      backdrop-filter: blur(10px);
-    }
-    .hero-price-badge .label { font-size: 11px; letter-spacing: 3px; color: var(--rose-light); margin-bottom: 6px; }
-    .hero-price-badge .price { font-family: 'Playfair Display', serif; font-size: 42px; color: white; line-height: 1; }
-    .hero-price-badge .price span { font-size: 16px; }
-    .hero-price-badge .note { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+    .hbar-l { font-size: 10px; font-weight: 700; color: var(--red); letter-spacing: .5px; }
+    .hbar-note { font-size: 10px; color: var(--mid); margin-top: 2px; }
+    .hbar-price { font-family: 'Noto Serif JP', serif; font-size: 34px; font-weight: 900; color: #2e1c1b; line-height: 1; }
+    .hbar-price small { font-size: 13px; font-weight: 400; }
 
-    @media (max-width: 768px) {
-      .hero-content { padding: 0 24px 60px; flex-direction: column; align-items: flex-start; gap: 32px; }
-      .hero-right { text-align: left; width: 100%; }
-      header { padding: 16px 20px; }
-      header.scrolled { padding: 12px 20px; }
+    @media (min-width: 768px) {
+      .hero { flex-direction: row; align-items: flex-end; }
+      .hero-text { padding: 0 64px 80px; max-width: 680px; }
+      .hero-h1 { font-size: clamp(42px, 5.5vw, 80px); margin-bottom: 20px; }
+      .hero-desc { font-size: 16px; }
+      .hero-btns { flex-direction: row; }
+      .hero-bar { display: none; }
+      /* デスクトップ: 価格バッジ */
+      .hero-badge {
+        position: absolute; right: 56px; bottom: 80px; z-index: 2;
+        background: rgba(255,255,255,.96);
+        border-radius: 16px; padding: 22px 30px; text-align: center;
+        box-shadow: 0 8px 28px rgba(0,0,0,.15);
+      }
+      .hb-label { font-size: 10px; font-weight: 700; color: var(--red); letter-spacing: 1px; margin-bottom: 4px; }
+      .hb-price { font-family: 'Noto Serif JP', serif; font-size: 44px; font-weight: 900; color: #2e1c1b; line-height: 1; }
+      .hb-price small { font-size: 17px; font-weight: 400; }
+      .hb-note { font-size: 11px; color: var(--mid); margin-top: 4px; }
+    }
+    @media (max-width: 767px) { .hero-badge { display: none; } }
+
+    /* ===== BUTTONS ===== */
+    .btn-red {
+      display: block; background: var(--red); color: #fff;
+      padding: 15px 20px; border-radius: 6px; font-size: 15px; font-weight: 700;
+      text-decoration: none; text-align: center;
+      box-shadow: 0 4px 18px rgba(224,114,142,.4);
+    }
+    .btn-wh {
+      display: block; background: #fff; color: var(--red);
+      padding: 13px 20px; border-radius: 6px; font-size: 14px; font-weight: 700;
+      text-decoration: none; text-align: center;
+    }
+    .btn-outline {
+      display: block; border: 1.5px solid rgba(255,255,255,.75); color: #fff;
+      padding: 13px 20px; border-radius: 6px; font-size: 14px;
+      text-decoration: none; text-align: center;
+    }
+    @media (min-width: 768px) {
+      .btn-red, .btn-wh, .btn-outline { display: inline-block; padding: 15px 36px; }
     }
 
     /* ===== MARQUEE ===== */
-    .marquee-wrap {
-      background: var(--rose); padding: 14px 0; overflow: hidden;
-    }
-    .marquee {
-      display: flex; gap: 0; animation: marquee 25s linear infinite; width: max-content;
-    }
-    .marquee-item {
-      font-size: 13px; font-weight: 700; letter-spacing: 3px;
-      color: white; text-transform: uppercase; white-space: nowrap;
-      padding: 0 32px;
-    }
-    .marquee-item::after { content: '✦'; margin-left: 32px; opacity: 0.6; }
-    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .mq-wrap { background: linear-gradient(90deg, var(--red) 0%, #f48aa5 50%, var(--red) 100%); padding: 10px 0; overflow: hidden; width: 100%; }
+    .mq { display: flex; animation: mq 28s linear infinite; }
+    .mq-item { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #fff; white-space: nowrap; padding: 0 20px; flex-shrink: 0; }
+    .mq-item::after { content: '✦'; margin-left: 20px; opacity: .5; }
+    @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* ===== SECTION BASE ===== */
-    .section { padding: 120px 60px; }
-    .section-sm { padding: 80px 60px; }
-    .inner { max-width: 1100px; margin: 0 auto; }
-    .inner-wide { max-width: 1300px; margin: 0 auto; }
-    @media(max-width:768px){
-      .section { padding: 80px 24px; }
-      .section-sm { padding: 60px 24px; }
+    /* ===== SECTION WRAPPER ===== */
+    .sec {
+      width: 100%;
+      padding: 52px 20px;
+    }
+    .wrap {
+      width: 100%;
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .sec { padding: 88px 48px; }
     }
 
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 12px;
-      font-size: 11px; font-weight: 700; letter-spacing: 4px;
-      text-transform: uppercase; color: var(--rose); margin-bottom: 20px;
+    /* ===== LABELS & TITLES ===== */
+    .lbl {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 10px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--red); margin-bottom: 10px;
     }
-    .eyebrow::before { content: ''; width: 30px; height: 1px; background: var(--rose); }
-    .eyebrow-white { color: var(--rose-light); }
-    .eyebrow-white::before { background: var(--rose-light); }
+    .lbl::before { content: ''; width: 18px; height: 2px; background: var(--red); flex-shrink: 0; }
+    .ttl {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 5vw, 42px);
+      font-weight: 900; line-height: 1.5; color: #2e1c1b;
+      margin-bottom: 12px;
+      word-break: normal; overflow-wrap: break-word;
+    }
+    .ttl em { font-style: normal; color: var(--red); }
+    .lead { font-size: 14px; line-height: 2; color: var(--mid); word-break: normal; overflow-wrap: break-word; max-width: 100%; }
+    @media (min-width: 768px) { .lead { font-size: 15px; } }
 
-    .heading {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(32px, 4.5vw, 56px);
-      font-weight: 700; line-height: 1.2; color: var(--text);
-      margin-bottom: 24px;
+    /* ===== 2-COL GRID ===== */
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-top: 32px;
     }
-    .heading em { font-style: italic; color: var(--rose); }
-    .heading-white { color: white; }
-    .heading-white em { color: var(--rose-light); }
+    @media (min-width: 768px) {
+      .grid2 { grid-template-columns: 1fr 1fr; gap: 52px; align-items: center; }
+    }
 
-    .lead {
-      font-size: 16px; line-height: 2.2; color: var(--text-mid);
-      font-weight: 300; max-width: 600px;
+    /* ===== PHOTO WITH CAPTION ===== */
+    .photo-cap { border-radius: 14px; overflow: hidden; position: relative; }
+    .photo-cap img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: center; }
+    .photo-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.65), transparent);
+      padding: 28px 18px 18px; color: #fff;
     }
-    .lead-white { color: rgba(255,255,255,0.75); }
+    .photo-caption strong { font-size: 15px; display: block; margin-bottom: 3px; }
+    .photo-caption span { font-size: 12px; opacity: .85; }
+    @media (min-width: 768px) {
+      .photo-cap img { aspect-ratio: 4/5; }
+    }
 
-    /* ===== PROBLEM ===== */
-    .problem { background: var(--black); }
-    .problem-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 60px; align-items: center; margin-top: 60px;
+    /* ===== CONCERN LIST ===== */
+    .c-list { list-style: none; }
+    .c-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 13px 0; border-bottom: 1px solid #fad8e5;
+      font-size: 14px; color: #2e1c1b; line-height: 1.8;
+      overflow: hidden;
     }
-    .problem-list { list-style: none; }
-    .problem-item {
-      padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
-      display: flex; align-items: flex-start; gap: 16px;
-      color: rgba(255,255,255,0.8); font-size: 16px; line-height: 1.8;
-    }
-    .problem-item:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
-    .problem-num {
-      font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700;
-      color: rgba(192,122,114,0.25); line-height: 1; flex-shrink: 0;
-      width: 48px;
-    }
-    .problem-photo {
-      position: relative; border-radius: 20px; overflow: hidden;
-      aspect-ratio: 4/5;
-    }
-    .problem-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .problem-photo-overlay {
+    .c-item:first-child { border-top: 1px solid #fad8e5; }
+    .c-n { font-family: 'Noto Serif JP', serif; font-size: 24px; font-weight: 900; color: #f4adc2; flex-shrink: 0; width: 32px; line-height: 1; }
+    .c-item > span:last-child { word-break: normal; overflow-wrap: break-word; }
+
+    /* ===== IMAGE BACKGROUND SECTION ===== */
+    .imgbg-sec { position: relative; }
+    .imgbg-sec > img.bgsrc {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(13,13,13,0.6) 0%, transparent 50%);
-    }
-    .problem-photo-text {
-      position: absolute; bottom: 28px; left: 28px; right: 28px;
-      color: white;
-    }
-    .problem-photo-text strong {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px; display: block; margin-bottom: 6px;
-    }
-    .problem-photo-text span { font-size: 13px; opacity: 0.8; }
-    @media(max-width:768px){ .problem-grid{ grid-template-columns:1fr; gap:40px; } }
-
-    /* ===== PT SECTION ===== */
-    .pt-section { background: var(--cream); }
-    .pt-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
-    }
-    .pt-photos {
-      display: grid; grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto; gap: 12px;
-    }
-    .pt-photo { border-radius: 14px; overflow: hidden; }
-    .pt-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .pt-photo.tall { grid-row: span 2; }
-    .pt-photo.tall img { height: 100%; min-height: 400px; }
-    .pt-photo.short img { height: 200px; }
-    .pt-badge {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--rose); color: white; padding: 10px 20px;
-      border-radius: 50px; font-size: 12px; font-weight: 700;
-      letter-spacing: 2px; margin-bottom: 32px;
-    }
-    .pt-points { margin-top: 40px; display: flex; flex-direction: column; gap: 20px; }
-    .pt-point {
-      display: flex; gap: 20px; align-items: flex-start;
-      padding: 20px 24px; background: white; border-radius: 14px;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.04);
-      transition: all 0.3s;
-    }
-    .pt-point:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(192,122,114,0.12); }
-    .pt-point-icon {
-      width: 48px; height: 48px; border-radius: 12px;
-      background: var(--rose-pale); color: var(--rose); font-size: 22px;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .pt-point-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-    .pt-point-text { font-size: 13px; color: var(--text-mid); line-height: 1.8; }
-    @media(max-width:768px){ .pt-grid{ grid-template-columns:1fr; gap:40px; } }
-
-    /* ===== MOTION ANALYSIS ===== */
-    .motion { background: var(--dark); }
-    .motion-inner {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
-    }
-    .motion-steps { margin-top: 40px; display: flex; flex-direction: column; gap: 0; }
-    .motion-step {
-      display: flex; gap: 20px; padding: 24px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .motion-step:last-child { border-bottom: none; }
-    .motion-step-num {
-      font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 700;
-      color: rgba(192,122,114,0.2); line-height: 1; flex-shrink: 0; width: 52px;
-    }
-    .motion-step-title { font-size: 15px; font-weight: 700; color: white; margin-bottom: 6px; }
-    .motion-step-text { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.8; }
-    .motion-video-wrap {
-      position: relative; border-radius: 20px; overflow: hidden;
-      aspect-ratio: 9/16; max-height: 600px; background: #000;
-    }
-    .motion-video {
-      width: 100%; height: 100%; object-fit: cover; opacity: 0.85;
-    }
-    .motion-video-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(26,21,20,0.7) 0%, transparent 50%);
-    }
-    .motion-video-label {
-      position: absolute; bottom: 24px; left: 24px; right: 24px;
-      color: white;
-    }
-    .motion-video-label strong {
-      font-family: 'Playfair Display', serif; font-size: 20px;
-      display: block; margin-bottom: 4px;
-    }
-    .motion-video-label span { font-size: 12px; opacity: 0.7; letter-spacing: 2px; }
-    @media(max-width:768px){ .motion-inner{ grid-template-columns:1fr; gap:40px; } }
-
-    /* ===== VIDEO SECTION ===== */
-    .video-section {
-      position: relative; height: 70vh; min-height: 480px;
-      overflow: hidden; display: flex; align-items: center;
-    }
-    .video-bg {
-      position: absolute; inset: 0; width: 100%; height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
     }
-    .video-bg-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(13,13,13,0.8) 0%, rgba(13,13,13,0.5) 100%);
+    .imgbg-overlay { position: absolute; inset: 0; }
+    .imgbg-content { position: relative; z-index: 2; }
+
+    /* ===== PT CARDS ===== */
+    .pt-imgs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
     }
-    .video-content {
-      position: relative; z-index: 2; padding: 0 60px; text-align: center; width: 100%;
+    .pt-img { border-radius: 10px; overflow: hidden; }
+    .pt-img img { width: 100%; object-fit: cover; object-position: center top; }
+    .pt-img.tall { grid-row: span 2; }
+    .pt-img.tall img { height: 280px; }
+    .pt-img.sm img { height: 134px; }
+    @media (min-width: 768px) {
+      .pt-img.tall img { height: 400px; }
+      .pt-img.sm img { height: 194px; }
     }
-    .video-content .heading { margin-bottom: 20px; }
-    @media(max-width:768px){ .video-content{ padding: 0 24px; } }
+    .pt-cards { display: flex; flex-direction: column; gap: 12px; }
+    .ptc {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: var(--white); border-radius: 12px; padding: 14px 16px;
+      box-shadow: 0 2px 10px rgba(224,114,142,.08);
+      overflow: hidden;
+    }
+    .ptc-ic { font-size: 20px; flex-shrink: 0; }
+    .ptc-ttl { font-size: 13px; font-weight: 700; margin-bottom: 3px; word-break: normal; overflow-wrap: break-word; }
+    .ptc-txt { font-size: 12px; color: var(--mid); line-height: 1.8; word-break: normal; overflow-wrap: break-word; }
+    @media (min-width: 768px) {
+      .ptc-ttl { font-size: 14px; }
+      .ptc-txt { font-size: 13px; }
+    }
+
+    /* ===== CTA BAND ===== */
+    .cband {
+      background: var(--red);
+      padding: 32px 20px;
+      display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center;
+    }
+    .cband-txt { font-size: 17px; font-weight: 700; color: #fff; word-break: normal; overflow-wrap: break-word; }
+    .cband-txt span { color: #ffccc9; }
+    @media (min-width: 768px) {
+      .cband { flex-direction: row; justify-content: space-between; padding: 32px 64px; text-align: left; }
+      .cband-txt { font-size: 20px; }
+      .btn-wh { display: inline-block; padding: 14px 36px; white-space: nowrap; }
+    }
+
+    /* ===== MOTION STEPS ===== */
+    .mstep {
+      display: flex; gap: 12px; padding: 15px 0;
+      border-bottom: 1px solid #fad8e5;
+      overflow: hidden;
+    }
+    .mstep:last-child { border-bottom: none; }
+    .mn { font-family: 'Noto Serif JP', serif; font-size: 26px; font-weight: 900; color: #f4adc2; flex-shrink: 0; width: 36px; line-height: 1; }
+    .mt { font-size: 13px; font-weight: 700; margin-bottom: 3px; word-break: normal; overflow-wrap: break-word; }
+    .md { font-size: 12px; color: var(--mid); line-height: 1.8; word-break: normal; overflow-wrap: break-word; }
+    @media (min-width: 768px) {
+      .mt { font-size: 14px; }
+      .md { font-size: 13px; }
+    }
 
     /* ===== BEFORE/AFTER ===== */
-    .ba-section { background: var(--cream); }
-    .ba-scroll-wrap {
-      overflow-x: auto; padding: 40px 0 20px;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: var(--rose-light) transparent;
+    .ba-outer { overflow-x: auto; -webkit-overflow-scrolling: touch; padding: 28px 0 8px; }
+    .ba-outer::-webkit-scrollbar { height: 3px; }
+    .ba-outer::-webkit-scrollbar-thumb { background: var(--red2); border-radius: 2px; }
+    .ba-row { display: flex; gap: 12px; padding: 0 20px; }
+    .ba-card { width: 220px; flex-shrink: 0; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 3px 16px rgba(224,114,142,.12); }
+    .ba-card img { width: 100%; height: 300px; object-fit: cover; object-position: top; display: block; }
+    .ba-info { padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .ba-lbl { font-size: 12px; font-weight: 700; color: #2e1c1b; }
+    .ba-tag { background: var(--pale); color: var(--red); font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+    @media (min-width: 768px) {
+      .ba-row { padding: 0 48px; }
+      .ba-card { width: 260px; }
+      .ba-card img { height: 360px; }
     }
-    .ba-scroll-wrap::-webkit-scrollbar { height: 3px; }
-    .ba-scroll-wrap::-webkit-scrollbar-track { background: transparent; }
-    .ba-scroll-wrap::-webkit-scrollbar-thumb { background: var(--rose-light); border-radius: 2px; }
-    .ba-scroll {
-      display: flex; gap: 20px; padding: 0 60px;
-      width: max-content;
+
+    /* ===== VOICES ===== */
+    .voices-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 32px;
     }
-    .ba-card {
-      width: 320px; flex-shrink: 0;
-      border-radius: 20px; overflow: hidden;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
-      transition: transform 0.3s;
+    @media (min-width: 768px) {
+      .voices-grid { grid-template-columns: repeat(3, 1fr); }
     }
-    .ba-card:hover { transform: translateY(-8px); }
-    .ba-card img { width: 100%; height: 400px; object-fit: cover; object-position: top; display: block; }
-    .ba-card-info {
-      background: white; padding: 20px 24px;
-      display: flex; justify-content: space-between; align-items: center;
+    .vc {
+      background: var(--white); border-radius: 14px; padding: 20px;
+      position: relative; box-shadow: 0 2px 14px rgba(224,114,142,.1);
+      overflow: hidden; width: 100%;
     }
-    .ba-card-label { font-size: 13px; font-weight: 700; color: var(--text); }
-    .ba-card-tag {
-      background: var(--rose-pale); color: var(--rose); font-size: 11px;
-      font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 1px;
-    }
-    @media(max-width:768px){ .ba-scroll{ padding: 0 24px; } }
+    .vc-result { position: absolute; top: 16px; right: 16px; background: var(--red); color: #fff; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
+    .vc-stars { color: #f5a623; font-size: 13px; letter-spacing: 1.5px; margin: 8px 0; }
+    .vc-txt { font-size: 13px; line-height: 2; color: #2e1c1b; word-break: normal; overflow-wrap: break-word; padding-right: 70px; margin-top: 6px; }
+    .vc-profile { display: flex; align-items: center; gap: 10px; overflow: hidden; margin-bottom: 12px; }
+    .vc-av { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--red2), var(--red)); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .vc-name { font-size: 13px; font-weight: 700; overflow-wrap: break-word; }
+    .vc-meta { font-size: 11px; color: var(--mid); margin-top: 2px; overflow-wrap: break-word; word-break: normal; }
 
     /* ===== MENU ===== */
-    .menu-section { background: var(--black); }
     .menu-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 24px; margin-top: 60px;
-    }
-    .menu-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 24px; overflow: hidden;
-      transition: all 0.3s;
-    }
-    .menu-card:hover {
-      background: rgba(255,255,255,0.07);
-      border-color: rgba(192,122,114,0.3);
-      transform: translateY(-4px);
-    }
-    .menu-card-img { position: relative; height: 240px; overflow: hidden; }
-    .menu-card-img img { width: 100%; height: 100%; object-fit: cover; }
-    .menu-card-img-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to bottom, transparent 30%, rgba(13,13,13,0.8) 100%);
-    }
-    .menu-card-img-label {
-      position: absolute; bottom: 20px; left: 24px;
-      font-family: 'Playfair Display', serif;
-      font-size: 22px; font-weight: 700; color: white;
-    }
-    .menu-card-body { padding: 28px; }
-    .menu-card-desc { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.9; margin-bottom: 20px; }
-    .menu-feats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-    .menu-feat {
-      border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.6);
-      font-size: 12px; padding: 5px 14px; border-radius: 20px;
-    }
-    .menu-price {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .menu-price-trial { font-size: 11px; color: var(--rose-light); letter-spacing: 2px; margin-bottom: 4px; }
-    .menu-price-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 38px; color: white; line-height: 1;
-    }
-    .menu-price-num span { font-size: 15px; }
-    .menu-cta {
-      background: var(--rose); color: white; padding: 12px 24px;
-      border-radius: 30px; font-size: 13px; font-weight: 700;
-      text-decoration: none; transition: background 0.3s; white-space: nowrap;
-    }
-    .menu-cta:hover { background: #a05e58; }
-    @media(max-width:768px){ .menu-grid{ grid-template-columns:1fr; } }
-
-    /* ===== GALLERY STRIP ===== */
-    .gallery-strip {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 8px; height: 500px;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 32px;
     }
-    .gallery-item { overflow: hidden; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
-    .gallery-item:hover img { transform: scale(1.05); }
-    .gallery-item.main { grid-row: span 2; border-radius: 20px 0 0 20px; }
-    .gallery-item.tr { border-radius: 0 20px 0 0; }
-    .gallery-item.br { border-radius: 0 0 20px 0; }
-    @media(max-width:768px){
-      .gallery-strip{ grid-template-columns:1fr 1fr; grid-template-rows: 200px 200px 200px; height:auto; }
-      .gallery-item.main{ grid-row:span 1; border-radius:16px 0 0 16px; }
-      .gallery-item.tr{ border-radius:0 16px 0 0; }
-      .gallery-item.br{ border-radius:0 0 16px 0; }
+    @media (min-width: 768px) {
+      .menu-grid { grid-template-columns: 1fr 1fr; }
     }
+    .mc { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 3px 16px rgba(224,114,142,.12); }
+    .mc-img { position: relative; height: 200px; overflow: hidden; }
+    .mc-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+    .mc-ov { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,.65) 100%); }
+    .mc-ttl { position: absolute; bottom: 14px; left: 16px; font-size: 18px; font-weight: 900; color: #fff; font-family: 'Noto Serif JP', serif; }
+    .mc-body { padding: 18px; }
+    .mc-desc { font-size: 13px; color: var(--mid); line-height: 1.9; margin-bottom: 12px; word-break: normal; overflow-wrap: break-word; }
+    .mc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .mc-tag { background: var(--pale); color: var(--red); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+    .mc-row { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 12px; border-top: 1px solid #fad8e5; }
+    .mc-lbl { font-size: 10px; color: var(--red); font-weight: 700; letter-spacing: 1px; margin-bottom: 2px; }
+    .mc-price { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 900; color: #2e1c1b; line-height: 1; }
+    .mc-price small { font-size: 12px; font-weight: 400; }
+    .mc-btn { background: var(--red); color: #fff; padding: 10px 16px; border-radius: 6px; font-size: 12px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+
+    /* ===== GALLERY ===== */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 160px 160px;
+      gap: 4px;
+      width: 100%;
+      overflow: hidden;
+    }
+    @media (min-width: 768px) {
+      .gallery {
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows: 240px 240px;
+      }
+    }
+    .gl-c { overflow: hidden; }
+    .gl-c img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform .5s; }
+    .gl-c:hover img { transform: scale(1.04); }
+    .gl-c.main { grid-row: span 2; }
 
     /* ===== TRAINER ===== */
-    .trainer-section { background: var(--cream); }
     .trainer-grid {
-      display: grid; grid-template-columns: 400px 1fr;
-      gap: 80px; align-items: start;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 36px;
+      margin-top: 32px;
     }
-    .trainer-photo-wrap { position: relative; }
-    .trainer-photo {
-      border-radius: 24px; overflow: hidden; aspect-ratio: 4/5;
+    @media (min-width: 768px) {
+      .trainer-grid { grid-template-columns: 320px 1fr; gap: 64px; align-items: start; }
     }
-    .trainer-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-    .trainer-cert {
-      position: absolute; bottom: -24px; right: -24px;
-      background: var(--rose); color: white;
-      padding: 20px 24px; border-radius: 16px;
-      box-shadow: 0 8px 30px rgba(192,122,114,0.35);
+    .trainer-photo-wrap { position: relative; max-width: 320px; margin: 0 auto; }
+    @media (min-width: 768px) { .trainer-photo-wrap { max-width: none; margin: 0; } }
+    .trainer-photo { border-radius: 18px; overflow: hidden; aspect-ratio: 3/4; }
+    .trainer-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .t-badge {
+      position: absolute; bottom: -14px; right: 0;
+      background: var(--red); color: #fff;
+      padding: 12px 16px; border-radius: 12px; text-align: center;
+      box-shadow: 0 4px 18px rgba(224,114,142,.35);
     }
-    .trainer-cert-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 42px; font-weight: 700; line-height: 1;
-    }
-    .trainer-cert-label { font-size: 11px; letter-spacing: 2px; opacity: 0.9; }
-    .trainer-info { padding-top: 20px; }
-    .trainer-name-en {
-      font-family: 'Playfair Display', serif; font-style: italic;
-      font-size: 40px; color: var(--rose); line-height: 1; margin-bottom: 4px;
-    }
-    .trainer-name-ja { font-size: 14px; color: var(--text-mid); letter-spacing: 3px; margin-bottom: 24px; }
-    .trainer-roles { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
-    .trainer-role {
-      background: var(--rose-pale); border: 1px solid var(--rose-light);
-      color: var(--rose); font-size: 12px; font-weight: 700;
-      padding: 7px 16px; border-radius: 30px; letter-spacing: 1px;
-    }
-    .trainer-bio { font-size: 15px; line-height: 2.2; color: var(--text-mid); margin-bottom: 32px; font-weight: 300; }
-    .trainer-stats { display: flex; gap: 32px; margin-bottom: 40px; }
-    .trainer-stat-num {
-      font-family: 'Playfair Display', serif; font-size: 44px;
-      font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 4px;
-    }
-    .trainer-stat-num span { font-size: 18px; }
-    .trainer-stat-label { font-size: 12px; color: var(--text-mid); letter-spacing: 1px; }
-    @media(max-width:768px){
-      .trainer-grid{ grid-template-columns:1fr; gap:60px; }
-      .trainer-cert{ right:0; bottom:-16px; }
-    }
+    @media (min-width: 768px) { .t-badge { right: -14px; } }
+    .t-badge-big { font-family: 'Noto Serif JP', serif; font-size: 26px; font-weight: 900; line-height: 1; }
+    .t-badge-sm { font-size: 9px; letter-spacing: 1px; opacity: .9; margin-top: 2px; }
+    .trainer-info { padding-top: 24px; }
+    @media (min-width: 768px) { .trainer-info { padding-top: 0; } }
+    .t-en { font-family: 'Noto Serif JP', serif; font-size: 26px; color: var(--red); line-height: 1; margin-bottom: 3px; }
+    .t-jp { font-size: 12px; color: var(--mid); letter-spacing: 2px; margin-bottom: 14px; }
+    .t-cert { display: inline-flex; align-items: center; gap: 6px; background: var(--pale); border: 1px solid #f4adc2; color: var(--red); font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 30px; margin-bottom: 18px; }
+    .t-bio { font-size: 13px; line-height: 2.2; color: var(--mid); font-weight: 300; margin-bottom: 20px; word-break: normal; overflow-wrap: break-word; }
+    .t-stats { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+    .t-snum { font-family: 'Noto Serif JP', serif; font-size: 34px; font-weight: 900; color: #2e1c1b; line-height: 1; }
+    .t-snum small { font-size: 13px; font-weight: 400; }
+    .t-slbl { font-size: 11px; color: var(--mid); margin-top: 2px; }
 
-    /* ===== STORE ===== */
-    .store-section {
-      position: relative; overflow: hidden;
+    /* ===== ACCESS ===== */
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      overflow: hidden;
     }
-    .store-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      min-height: 500px;
+    @media (min-width: 768px) {
+      .access-grid { grid-template-columns: 1fr 1fr; min-height: 400px; }
     }
-    .store-photo { overflow: hidden; }
-    .store-photo img { width: 100%; height: 100%; object-fit: cover; min-height: 400px; }
-    .store-info {
-      background: var(--dark); padding: 80px 60px;
-      display: flex; flex-direction: column; justify-content: center;
+    .access-photo { height: 240px; overflow: hidden; }
+    .access-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    @media (min-width: 768px) { .access-photo { height: auto; } }
+    .access-info { background: var(--pale); padding: 40px 20px; }
+    @media (min-width: 768px) { .access-info { padding: 56px 52px; } }
+    .a-rows { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .a-row { display: flex; gap: 12px; font-size: 13px; border-bottom: 1px solid #fad8e5; padding-bottom: 10px; word-break: normal; overflow-wrap: break-word; }
+    .a-row:last-child { border-bottom: none; }
+    .a-lbl { color: var(--red); font-weight: 700; width: 60px; flex-shrink: 0; font-size: 12px; }
+    .a-val { color: var(--mid); line-height: 1.7; }
+    @media (min-width: 768px) { .a-row { font-size: 14px; } .a-lbl { font-size: 13px; width: 68px; } }
+
+    /* ===== BANNER (photo + text overlay) ===== */
+    .banner {
+      position: relative;
+      height: 50vh; min-height: 280px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
     }
-    .store-detail { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
-    .store-row {
-      display: flex; gap: 20px; font-size: 14px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      padding-bottom: 16px;
-    }
-    .store-row:last-child { border-bottom: none; }
-    .store-row-label { color: var(--rose-light); font-weight: 700; width: 80px; flex-shrink: 0; letter-spacing: 1px; }
-    .store-row-val { color: rgba(255,255,255,0.7); line-height: 1.7; }
-    @media(max-width:768px){ .store-grid{ grid-template-columns:1fr; } .store-info{ padding:60px 24px; } }
+    .banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+    .banner-ov { position: absolute; inset: 0; }
+    .banner-body { position: relative; z-index: 2; text-align: center; padding: 0 20px; width: 100%; }
+    .banner-body .ttl { color: #fff; }
+    .banner-body .ttl em { color: #ffccc9; }
+    .banner-body .lead { color: rgba(255,255,255,.9); margin: 10px auto 22px; max-width: 400px; text-align: center; }
 
     /* ===== FINAL CTA ===== */
-    .final-cta {
-      position: relative; overflow: hidden;
-      background: var(--black); padding: 140px 60px;
-      text-align: center;
+    .final { position: relative; overflow: hidden; }
+    .final img.final-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .final-ov { position: absolute; inset: 0; background: rgba(255,245,248,.93); }
+    .final-body { position: relative; z-index: 2; padding: 68px 20px; text-align: center; }
+    @media (min-width: 768px) { .final-body { padding: 96px 48px; } }
+    .final-price { font-family: 'Noto Serif JP', serif; font-size: clamp(54px, 11vw, 96px); font-weight: 900; color: var(--red); line-height: 1; margin: 24px 0 6px; }
+    .final-price small { font-size: .28em; }
+    .final-note { font-size: 12px; color: var(--mid); letter-spacing: .5px; margin-bottom: 28px; }
+    .btn-big {
+      display: block; background: var(--red); color: #fff;
+      padding: 17px 24px; border-radius: 6px; font-size: 16px; font-weight: 700;
+      text-decoration: none; box-shadow: 0 6px 24px rgba(224,114,142,.45);
+      max-width: 400px; margin: 0 auto;
     }
-    .final-cta-bg {
-      position: absolute; inset: 0;
-      background: url('assets/Bridal\ -\ 26.PNG') center / cover no-repeat;
-      opacity: 0.12;
+    @media (min-width: 768px) {
+      .btn-big { display: inline-block; padding: 20px 60px; font-size: 18px; }
     }
-    .final-cta-content { position: relative; z-index: 2; }
-    .final-price-display {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(64px, 10vw, 120px);
-      font-weight: 900; color: white; line-height: 1;
-      margin: 40px 0 8px;
-    }
-    .final-price-display span { font-size: 0.3em; }
-    .final-price-note { font-size: 14px; color: rgba(255,255,255,0.5); letter-spacing: 2px; margin-bottom: 48px; }
-    .btn-large {
-      display: inline-block; background: var(--rose); color: white;
-      padding: 22px 64px; border-radius: 50px; font-size: 17px; font-weight: 700;
-      text-decoration: none; letter-spacing: 1px;
-      box-shadow: 0 10px 40px rgba(192,122,114,0.45);
-      transition: all 0.3s;
-    }
-    .btn-large:hover {
-      background: #a05e58; transform: translateY(-4px);
-      box-shadow: 0 18px 50px rgba(192,122,114,0.5);
-    }
-    .final-reassure {
-      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
-      margin-top: 48px;
-    }
-    .final-reassure-item {
-      color: rgba(255,255,255,0.5); font-size: 13px; letter-spacing: 1px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .final-reassure-item::before { content: '✓'; color: var(--rose-light); }
-    @media(max-width:768px){ .final-cta{ padding:100px 24px; } }
+    .reassures { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 18px; margin-top: 24px; }
+    .ri { font-size: 12px; color: var(--mid); display: flex; align-items: center; gap: 5px; }
+    .ri::before { content: '✓'; color: var(--red); font-weight: 700; }
 
     /* ===== FOOTER ===== */
-    footer {
-      background: #080808; padding: 48px 60px;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 20px;
+    footer { background: #2e1c1b; padding: 32px 20px; display: flex; flex-direction: column; gap: 10px; }
+    .f-logo { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 900; color: rgba(255,255,255,.65); }
+    .f-logo span { color: #f4adc2; }
+    .f-copy { font-size: 11px; color: rgba(255,255,255,.3); line-height: 1.8; }
+    @media (min-width: 768px) {
+      footer { flex-direction: row; justify-content: space-between; align-items: center; padding: 36px 64px; }
     }
-    .footer-logo {
-      font-family: 'Playfair Display', serif; font-size: 22px;
-      font-weight: 700; color: rgba(255,255,255,0.6);
-    }
-    .footer-logo em { font-style: italic; color: var(--rose-light); }
-    .footer-info { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 2; text-align: right; }
-    @media(max-width:768px){ footer{ padding:40px 24px; } .footer-info{text-align:left;} }
 
-    /* ===== DIVIDER CTA ===== */
-    .cta-band {
-      background: var(--rose-pale); padding: 48px 60px;
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 24px; flex-wrap: wrap;
-    }
-    .cta-band-text { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--text); }
-    .cta-band-text span { color: var(--rose); }
-    @media(max-width:768px){ .cta-band{padding:40px 24px; flex-direction:column;} }
+    /* ===== UTILS ===== */
+    .bg-pale { background: var(--pale); }
+    .bg-blush { background: var(--blush); }
+    .bg-white { background: var(--white); }
+    .mt32 { margin-top: 32px; }
+    .tc { text-align: center; }
   </style>
 </head>
 <body>
 
-<!-- ===== FLOATING CTA ===== -->
-<a href="#reserve" class="float-cta">
-  <div class="float-cta-dot"></div>
-  体験予約 1,100円
-</a>
+<!-- FLOAT CTA -->
+<a href="#reserve" class="fcta"><div class="dot"></div>体験 1,100円 予約する</a>
 
-<!-- ===== HEADER ===== -->
-<header id="header">
+<!-- HEADER -->
+<header id="hd">
   <div>
-    <div class="logo-text">Body<em>Nate</em></div>
+    <div class="logo">Body<b>Nate</b></div>
     <span class="logo-sub">Kobe Sannomiya</span>
   </div>
-  <a href="#reserve" class="header-cta">体験レッスン →</a>
+  <a href="#reserve" class="hcta">体験予約 →</a>
 </header>
 
 <!-- ===== HERO ===== -->
 <section class="hero">
-  <img class="hero-video" src="assets/Bridal - 26.PNG" alt="Body Nate トレーニング">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-left">
-      <div class="hero-eyebrow">理学療法士が担当する パーソナルジム</div>
-      <h1 class="hero-title">
-        ダイエットを、<br>
-        <em>成功させる。</em>
-      </h1>
-      <p class="hero-desc">
-        動作分析 × 整体 × パーソナルトレーニング。<br>
-        医療の知識を持つ理学療法士が<br>あなたの体を根本から変えます。
-      </p>
-      <div class="hero-btns">
-        <a href="#reserve" class="btn-primary">体験予約はこちら</a>
-        <a href="#about" class="btn-ghost">詳しく見る</a>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div class="hero-price-badge">
-        <div class="label">TRIAL LESSON</div>
-        <div class="price"><span>¥</span>1,100</div>
-        <div class="note">50分 / 完全予約制</div>
-      </div>
-    </div>
+  <img class="hero-bg" src="assets/Bridal - 26.PNG" alt="Body Nate パーソナルトレーニング">
+  <div class="hero-ov"></div>
+  <div class="hero-badge">
+    <div class="hb-label">体験レッスン</div>
+    <div class="hb-price"><small>¥</small>1,100</div>
+    <div class="hb-note">50分 / 完全予約制</div>
   </div>
-</section>
-
-<!-- ===== MARQUEE ===== -->
-<div class="marquee-wrap">
-  <div class="marquee">
-    <span class="marquee-item">理学療法士が担当</span>
-    <span class="marquee-item">動作分析で根本改善</span>
-    <span class="marquee-item">整体×トレーニング</span>
-    <span class="marquee-item">体験 1,100円</span>
-    <span class="marquee-item">神戸三宮</span>
-    <span class="marquee-item">30代・40代・50代女性に支持</span>
-    <span class="marquee-item">理学療法士が担当</span>
-    <span class="marquee-item">動作分析で根本改善</span>
-    <span class="marquee-item">整体×トレーニング</span>
-    <span class="marquee-item">体験 1,100円</span>
-    <span class="marquee-item">神戸三宮</span>
-    <span class="marquee-item">30代・40代・50代女性に支持</span>
-  </div>
-</div>
-
-<!-- ===== PROBLEM ===== -->
-<section class="section problem" id="about">
-  <div class="inner">
-    <div class="reveal">
-      <div class="eyebrow eyebrow-white">Your Concerns</div>
-      <h2 class="heading heading-white">
-        その「ダイエットの失敗」、<br>
-        <em>原因があります。</em>
-      </h2>
-    </div>
-    <div class="problem-grid">
-      <ul class="problem-list reveal-left">
-        <li class="problem-item">
-          <span class="problem-num">01</span>
-          <span>食事制限と運動を続けているのに、体重が落ちない</span>
-        </li>
-        <li class="problem-item">
-          <span class="problem-num">02</span>
-          <span>産後から体型が戻らず、何をしても変わらない</span>
-        </li>
-        <li class="problem-item">
-          <span class="problem-num">03</span>
-          <span>40代を超えてから代謝が落ちて、太りやすくなった</span>
-        </li>
-        <li class="problem-item">
-          <span class="problem-num">04</span>
-          <span>腰痛・肩こりがひどくて、しっかり運動できない</span>
-        </li>
-        <li class="problem-item">
-          <span class="problem-num">05</span>
-          <span>ジムに通っても続かない、一人では限界を感じる</span>
-        </li>
-      </ul>
-      <div class="problem-photo reveal-right">
-        <img src="assets/IMG_8592 2.jpg" alt="カウンセリング">
-        <div class="problem-photo-overlay"></div>
-        <div class="problem-photo-text">
-          <strong>まず、原因を知ること。</strong>
-          <span>Body Nateのカウンセリングから始まります</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== PT SECTION ===== -->
-<section class="section pt-section" id="pt">
-  <div class="inner">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
-      <div class="reveal-left">
-        <div class="eyebrow">Physical Therapist</div>
-        <h2 class="heading">
-          理学療法士が担当するから、<br>
-          <em>安心・安全・確実。</em>
-        </h2>
-        <p class="lead">
-          理学療法士は、医療国家資格を持つ身体の専門家。<br>
-          骨格・筋肉・神経の構造を熟知しているから、<br>あなたの体に本当に必要なアプローチができます。
-        </p>
-        <div class="pt-points">
-          <div class="pt-point">
-            <div class="pt-point-icon">🦴</div>
-            <div>
-              <div class="pt-point-title">医療国家資格保有</div>
-              <p class="pt-point-text">理学療法士の国家資格を持つプロが担当。怪我のリスクを最小限に、安全にトレーニングを行います。</p>
-            </div>
-          </div>
-          <div class="pt-point">
-            <div class="pt-point-icon">🔬</div>
-            <div>
-              <div class="pt-point-title">科学的根拠に基づく指導</div>
-              <p class="pt-point-text">感覚や経験だけでなく、医学的エビデンスに基づいたプログラムで確実な変化を実現します。</p>
-            </div>
-          </div>
-          <div class="pt-point">
-            <div class="pt-point-icon">💊</div>
-            <div>
-              <div class="pt-point-title">慢性痛・既往症がある方も安心</div>
-              <p class="pt-point-text">腰痛・膝痛・産後の体の不調など、医療的な知識でケアしながら体を変えていきます。</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="reveal-right">
-        <div class="pt-photos">
-          <div class="pt-photo tall">
-            <img src="assets/IMG_9942 2.jpg" alt="理学療法士による施術" style="height:100%;min-height:440px;">
-          </div>
-          <div class="pt-photo short">
-            <img src="assets/IMG_9956 2.JPG" alt="理学療法士による施術2">
-          </div>
-          <div class="pt-photo short">
-            <img src="assets/IMG_8824.JPG" alt="施術機器">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CTA BAND ===== -->
-<div class="cta-band">
-  <div class="cta-band-text">理学療法士による体験レッスン、<span>1,100円で受けられます。</span></div>
-  <a href="#reserve" class="btn-primary">今すぐ予約する →</a>
-</div>
-
-<!-- ===== MOTION ANALYSIS ===== -->
-<section class="section motion">
-  <div class="inner">
-    <div class="motion-inner">
-      <div class="reveal-left">
-        <div class="eyebrow eyebrow-white">Motion Analysis</div>
-        <h2 class="heading heading-white">
-          動作分析で、<br>
-          <em>なぜ変われないかが</em><br>
-          わかります。
-        </h2>
-        <p class="lead lead-white">
-          Body Nateでは、トレーニング前に必ず「動作分析」を実施。あなたの体の使い方のクセ・歪み・弱点を科学的に評価します。
-        </p>
-        <div class="motion-steps">
-          <div class="motion-step">
-            <div class="motion-step-num">01</div>
-            <div>
-              <div class="motion-step-title">姿勢・骨盤ラインの評価</div>
-              <p class="motion-step-text">立位・座位での骨格アライメントを確認。太りやすいクセの根本を特定します。</p>
-            </div>
-          </div>
-          <div class="motion-step">
-            <div class="motion-step-num">02</div>
-            <div>
-              <div class="motion-step-title">動作パターンの分析</div>
-              <p class="motion-step-text">歩き方・しゃがみ方など日常動作を評価。どの筋肉が使えていないかを明確にします。</p>
-            </div>
-          </div>
-          <div class="motion-step">
-            <div class="motion-step-num">03</div>
-            <div>
-              <div class="motion-step-title">オーダーメイドプログラム作成</div>
-              <p class="motion-step-text">分析結果をもとに、あなたの体専用のトレーニングと整体プランを設計します。</p>
-            </div>
-          </div>
-          <div class="motion-step">
-            <div class="motion-step-num">04</div>
-            <div>
-              <div class="motion-step-title">継続的な再評価</div>
-              <p class="motion-step-text">定期的に動作を再評価し、プログラムを最適化。確実な変化を数字で確認できます。</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="reveal-right">
-        <div class="motion-video-wrap">
-          <img class="motion-video" src="assets/IMG_9942 2.jpg" alt="動作分析" style="width:100%;height:100%;object-fit:cover;">
-          <div class="motion-video-overlay"></div>
-          <div class="motion-video-label">
-            <strong>動作分析の様子</strong>
-            <span>MOTION ANALYSIS SESSION</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== VIDEO SECTION ===== -->
-<section class="video-section">
-  <img class="video-bg" src="assets/Bridal - 27.PNG" alt="トレーニング風景" style="object-fit:cover;width:100%;height:100%;">
-  <div class="video-bg-overlay"></div>
-  <div class="video-content reveal">
-    <div class="eyebrow eyebrow-white" style="justify-content:center;">Real Results</div>
-    <h2 class="heading heading-white" style="text-align:center;">
-      通い始めて<em>1ヶ月</em>で、<br>体が変わりはじめる。
-    </h2>
-    <p class="lead lead-white" style="margin:20px auto 40px;text-align:center;">
-      30〜50代の女性が続々と体型変化を実感。<br>
-      あなたの「変わりたい」を、本気でサポートします。
+  <div class="hero-text">
+    <div class="hero-tag">✨ 理学療法士が担当 ／ 神戸三宮</div>
+    <h1 class="hero-h1">
+      ダイエット、<br>
+      何度も挫折した私が<br>
+      <em>3ヶ月で変われた理由。</em>
+    </h1>
+    <p class="hero-desc">
+      <strong>動作分析 × 整体 × パーソナルトレーニング</strong><br>
+      理学療法士が「変われない本当の原因」を<br>
+      見つけて、一緒に解決します。
     </p>
-    <a href="#reserve" class="btn-primary">体験レッスンを予約する</a>
+    <div class="hero-btns">
+      <a href="#reserve" class="btn-red">体験レッスン予約（1,100円）→</a>
+      <a href="#about" class="btn-outline">詳しく見る</a>
+    </div>
+  </div>
+  <div class="hero-bar">
+    <div>
+      <div class="hbar-l">体験レッスン</div>
+      <div class="hbar-note">50分 / 完全予約制</div>
+    </div>
+    <div class="hbar-price"><small>¥</small>1,100</div>
   </div>
 </section>
+
+<!-- MARQUEE -->
+<div class="mq-wrap">
+  <div class="mq">
+    <span class="mq-item">理学療法士が担当</span><span class="mq-item">動作分析で根本改善</span><span class="mq-item">整体×トレーニング</span><span class="mq-item">体験 1,100円</span><span class="mq-item">30代・40代・50代女性に支持</span><span class="mq-item">神戸三宮</span><span class="mq-item">理学療法士が担当</span><span class="mq-item">動作分析で根本改善</span><span class="mq-item">整体×トレーニング</span><span class="mq-item">体験 1,100円</span><span class="mq-item">30代・40代・50代女性に支持</span><span class="mq-item">神戸三宮</span>
+  </div>
+</div>
+
+<!-- ===== CONCERNS ===== -->
+<section class="sec bg-white" id="about">
+  <div class="wrap">
+    <div class="rv">
+      <div class="lbl">こんなお悩みありませんか？</div>
+      <h2 class="ttl">変われないのは、<br><em>あなたのせいじゃありません。</em></h2>
+      <p class="lead">原因を知らないまま頑張っても体は変わりません。まず「なぜ変われないか」を一緒に明らかにしましょう。</p>
+    </div>
+    <div class="grid2">
+      <div class="photo-cap rv">
+        <img src="assets/IMG_8592 2.jpg" alt="カウンセリング">
+        <div class="photo-caption">
+          <strong>まず、原因を知ることから。</strong>
+          <span>丁寧なカウンセリングで一緒に考えます。</span>
+        </div>
+      </div>
+      <ul class="c-list rv">
+        <li class="c-item"><span class="c-n">01</span><span>食事を減らして運動もしているのに、体重が落ちない</span></li>
+        <li class="c-item"><span class="c-n">02</span><span>産後から体型が戻らず、何をやっても変わらない</span></li>
+        <li class="c-item"><span class="c-n">03</span><span>40代から代謝が落ちて、以前より太りやすくなった</span></li>
+        <li class="c-item"><span class="c-n">04</span><span>腰痛・肩こりがひどくて、しっかり運動できない</span></li>
+        <li class="c-item"><span class="c-n">05</span><span>ジムに入会しても続かない、一人では限界を感じる</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PT FEATURE ===== -->
+<section class="sec bg-pale" id="pt">
+  <div class="wrap">
+    <div class="rv">
+      <div class="lbl">理学療法士が担当するから</div>
+      <h2 class="ttl">安心・安全に、<br><em>確実に体が変わります。</em></h2>
+      <p class="lead">理学療法士は骨格・筋肉・神経を熟知した医療国家資格者。「頑張っているのに変わらない」を医療の視点で解決します。</p>
+    </div>
+    <div class="grid2">
+      <div class="pt-imgs rv">
+        <div class="pt-img tall"><img src="assets/IMG_9942 2.jpg" alt="施術"></div>
+        <div class="pt-img sm"><img src="assets/IMG_9956 2.JPG" alt="施術2"></div>
+        <div class="pt-img sm"><img src="assets/IMG_8824.JPG" alt="機器"></div>
+      </div>
+      <div class="pt-cards rv">
+        <div class="ptc"><div class="ptc-ic">🏥</div><div><div class="ptc-ttl">医療国家資格・理学療法士が担当</div><p class="ptc-txt">怪我のリスクを最小限に安全なトレーニングを提供。慢性痛・既往症がある方も安心してご相談ください。</p></div></div>
+        <div class="ptc"><div class="ptc-ic">🔍</div><div><div class="ptc-ttl">動作分析で「変われない原因」を特定</div><p class="ptc-txt">姿勢・骨格・動作パターンを科学的に評価。あなたの体に合った方法だけを選びます。</p></div></div>
+        <div class="ptc"><div class="ptc-ic">✨</div><div><div class="ptc-ttl">整体で整えてから鍛えるから効果が違う</div><p class="ptc-txt">骨盤・骨格の歪みを整えてからトレーニング。腰痛・肩こりの改善も同時に叶います。</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND 1 -->
+<div class="cband">
+  <div>
+    <div class="cband-txt">まず1回、<span>体験してみてください。</span></div>
+    <div style="font-size:12px;color:rgba(255,255,255,.75);margin-top:6px;">通常10,000円のレッスンが → 今だけ体験価格<strong style="color:#ffccc9;font-size:15px;"> 1,100円</strong></div>
+  </div>
+  <a href="#reserve" class="btn-wh">今すぐ体験を予約する →</a>
+</div>
+
+<!-- ===== MOTION ===== -->
+<section class="sec bg-white">
+  <div class="wrap">
+    <div class="rv">
+      <div class="lbl">Body Nateの特徴</div>
+      <h2 class="ttl">トレーニング前の<em>動作分析</em>で<br>体が変わる理由がわかります。</h2>
+      <p class="lead">なんとなく運動するのではなく、体の使い方のクセを分析してから始めるから、結果が出るスピードが違います。</p>
+    </div>
+    <div class="grid2">
+      <div class="photo-cap rv">
+        <img src="assets/IMG_9942 2.jpg" alt="動作分析">
+      </div>
+      <div class="rv">
+        <div class="mstep"><div class="mn">01</div><div><div class="mt">姿勢・骨盤ラインの評価</div><p class="md">立ち方・座り方から骨格の歪みを確認。太りやすいクセの根本を特定します。</p></div></div>
+        <div class="mstep"><div class="mn">02</div><div><div class="mt">動作パターンの分析</div><p class="md">歩き方・しゃがみ方など日常動作を評価。使えていない筋肉を明確にします。</p></div></div>
+        <div class="mstep"><div class="mn">03</div><div><div class="mt">あなた専用プログラムの設計</div><p class="md">分析結果をもとに、整体とトレーニングの最適な組み合わせを設計します。</p></div></div>
+        <div class="mstep"><div class="mn">04</div><div><div class="mt">定期的な再評価で効果を確認</div><p class="md">定期的に動作を再評価し、プログラムを更新。数字で変化を実感できます。</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANNER -->
+<div class="banner">
+  <img src="assets/Bridal - 27.PNG" alt="トレーニング">
+  <div class="banner-ov" style="background:linear-gradient(150deg,rgba(224,114,142,.75),rgba(120,40,70,.55));"></div>
+  <div class="banner-body rv">
+    <h2 class="ttl">通い始めて<em>1ヶ月</em>で、<br>体が変わりはじめる。</h2>
+    <p class="lead">30〜50代の女性が続々と体型変化を実感。<br>あなたの「変わりたい」を、本気でサポートします。</p>
+    <a href="#reserve" class="btn-wh" style="display:inline-block;padding:13px 32px;">体験レッスンを予約する</a>
+  </div>
+</div>
 
 <!-- ===== BEFORE/AFTER ===== -->
-<section class="section ba-section">
-  <div class="inner">
-    <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:8px;">
+<section class="sec bg-pale">
+  <div class="wrap">
+    <div class="rv" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px;margin-bottom:4px;">
       <div>
-        <div class="eyebrow">Before & After</div>
-        <h2 class="heading">実際のお客様の<em>変化</em></h2>
+        <div class="lbl">実績</div>
+        <h2 class="ttl">お客様の<em>ビフォーアフター</em></h2>
       </div>
-      <p style="font-size:13px;color:var(--text-light);text-align:right;">← スワイプで見る →</p>
+      <span style="font-size:12px;color:var(--light);">← スワイプで見る →</span>
     </div>
   </div>
-  <div class="ba-scroll-wrap">
-    <div class="ba-scroll">
+  <div class="ba-outer">
+    <div class="ba-row">
       <div class="ba-card">
-        <img src="assets/IMG_1132.jpg" alt="ビフォーアフター1">
-        <div class="ba-card-info">
-          <div class="ba-card-label">ウエスト・背中がスッキリ</div>
-          <div class="ba-card-tag">2ヶ月</div>
-        </div>
+        <img src="assets/IMG_1132.jpg" alt="BA1">
+        <div class="ba-info"><div class="ba-lbl">ウエスト<b style="color:var(--red)">-6cm</b>・背中がスッキリ</div><div class="ba-tag">2ヶ月</div></div>
+        <div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「背中の肉が消えた！と友達に言われました」 40代 / 主婦</div>
       </div>
       <div class="ba-card">
-        <img src="assets/IMG_1133.jpg" alt="ビフォーアフター2">
-        <div class="ba-card-info">
-          <div class="ba-card-label">背中・腰まわりが引き締まった</div>
-          <div class="ba-card-tag">3ヶ月</div>
-        </div>
+        <img src="assets/IMG_1133.jpg" alt="BA2">
+        <div class="ba-info"><div class="ba-lbl">ウエスト<b style="color:var(--red)">-5cm</b>・全体的に引き締まった</div><div class="ba-tag">3ヶ月</div></div>
+        <div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「体重は変わってないのに服のサイズが変わりました！」 38歳</div>
       </div>
       <div class="ba-card">
-        <img src="assets/IMG_0893 2.jpg" alt="ビフォーアフター3">
-        <div class="ba-card-info">
-          <div class="ba-card-label">お腹・脚のラインが変化</div>
-          <div class="ba-card-tag">2ヶ月</div>
-        </div>
+        <img src="assets/IMG_0893 2.jpg" alt="BA3">
+        <div class="ba-info"><div class="ba-lbl">お腹周り<b style="color:var(--red)">-8cm</b>・横のラインが激変</div><div class="ba-tag">2ヶ月</div></div>
+        <div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「お腹がぺたんこに！動作分析のおかげです」 42歳 / 産後</div>
       </div>
       <div class="ba-card">
-        <img src="assets/IMG_0894 2.JPG" alt="ビフォーアフター4">
-        <div class="ba-card-info">
-          <div class="ba-card-label">全体的にスリムに</div>
-          <div class="ba-card-tag">3ヶ月</div>
-        </div>
+        <img src="assets/IMG_0894 2.JPG" alt="BA4">
+        <div class="ba-info"><div class="ba-lbl">体重<b style="color:var(--red)">-4kg</b>・ウエスト・太もものラインが変化</div><div class="ba-tag">3ヶ月</div></div>
+        <div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「食事制限なしでここまで変わるとは思わなかった」 35歳</div>
       </div>
       <div class="ba-card">
-        <img src="assets/IMG_0885 2.JPG" alt="ビフォーアフター5">
-        <div class="ba-card-info">
-          <div class="ba-card-label">産後体型が改善</div>
-          <div class="ba-card-tag">4ヶ月</div>
-        </div>
+        <img src="assets/IMG_0885 2.JPG" alt="BA5">
+        <div class="ba-info"><div class="ba-lbl">体重<b style="color:var(--red)">-3kg</b>・背中・ヒップラインがスッキリ</div><div class="ba-tag">4ヶ月</div></div>
+        <div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「腰痛も一緒に改善されて毎日が楽です」 49歳 / 会社員</div>
       </div>
       <div class="ba-card">
-        <img src="assets/IMG_0888 2.JPG" alt="ビフォーアフター6">
-        <div class="ba-card-info">
-          <div class="ba-card-label">下半身がスッキリ</div>
-          <div class="ba-card-tag">3ヶ月</div>
-        </div>
+        <img src="assets/IMG_0888 2.JPG" alt="BA6">
+        <div class="ba-info"><div class="ba-lbl">体重<b style="color:var(--red)">-5kg</b>・上半身・背中がスッキリ</div><div class="ba-tag">3ヶ月</div></div>
+        <div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「ずっと着られなかったワンピースが入りました！」 44歳</div>
       </div>
     </div>
   </div>
-  <div class="inner" style="margin-top:40px;">
-    <div class="reveal" style="text-align:center;">
-      <p style="font-size:13px;color:var(--text-light);margin-bottom:24px;">※個人差があります。写真はすべて実際のお客様です。</p>
-      <a href="#reserve" class="btn-primary">私も変わりたい！体験を予約する →</a>
+  <div class="wrap mt32 rv tc">
+    <p style="font-size:11px;color:var(--light);margin-bottom:8px;">※個人差があります。写真はすべて実際のお客様です。</p>
+    <p style="font-size:14px;color:var(--mid);margin-bottom:16px;">あなたも、まず体験から始めてみませんか？</p>
+    <a href="#reserve" class="btn-red" style="display:inline-block;padding:16px 40px;font-size:15px;">私も体験してみる（1,100円）→</a>
+    <p style="font-size:11px;color:var(--light);margin-top:10px;">通常10,000円 → 初回のみ特別価格 / 強制入会なし</p>
+  </div>
+</section>
+
+<!-- ===== VOICES ===== -->
+<section class="sec bg-white">
+  <div class="wrap">
+    <div class="rv">
+      <div class="lbl">お客様の声</div>
+      <h2 class="ttl">通ってよかった、と<br><em>言ってもらえています。</em></h2>
+    </div>
+    <div class="voices-grid">
+      <div class="vc rv">
+        <div class="vc-profile"><div class="vc-av">👩</div><div><div class="vc-name">Y.Mさん</div><div class="vc-meta">42歳 / 産後2年・お腹まわりが悩みでした</div></div></div>
+        <div class="vc-result">体重-4kg / 3ヶ月</div>
+        <div class="vc-stars">★★★★★</div>
+        <p class="vc-txt">産後から2年間、何をやっても体型が戻らなくて諦めていました。ここでは動作分析で「骨盤のゆがみが原因」とわかって。正しいアプローチをしたら3ヶ月で体重-4kg、お腹周り-8cmも細くなりました。出産前より綺麗かも、と主人に言われました（笑）</p>
+      </div>
+      <div class="vc rv">
+        <div class="vc-profile"><div class="vc-av">👩</div><div><div class="vc-name">K.Hさん</div><div class="vc-meta">44歳 / 何をやっても変わらなかった</div></div></div>
+        <div class="vc-result">ウエスト-6cm / 2ヶ月</div>
+        <div class="vc-stars">★★★★★</div>
+        <p class="vc-txt">ジムにも通ったし、食事制限もした。でも全然変わらなくて「もう無理なのかな」って思ってた40代。ここに来て姿勢と使えてない筋肉を教えてもらったら、たった2ヶ月で背中の肉が消えました。友達に「痩せた？」って何人にも言われて嬉しかったです。</p>
+      </div>
+      <div class="vc rv">
+        <div class="vc-profile"><div class="vc-av">👩</div><div><div class="vc-name">T.Nさん</div><div class="vc-meta">51歳 / 腰痛持ち・ダイエット諦めてました</div></div></div>
+        <div class="vc-result">体重-5kg / 3ヶ月</div>
+        <div class="vc-stars">★★★★★</div>
+        <p class="vc-txt">50代で体が変わるか半信半疑で来たんですが、理学療法士さんが腰痛のことも一緒に診てくれて本当に助かりました。今まで運動できなかった腰の痛みが改善されて、気づいたら体重も-5kg。昔着れなかった服が入るようになって毎日楽しいです。</p>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- CTA BAND after voices -->
+<div style="background:var(--pale);padding:36px 20px;text-align:center;border-top:2px solid #f4adc2;">
+  <p style="font-size:14px;color:var(--mid);margin-bottom:6px;">このお客様たちも、最初は体験1回から始めました。</p>
+  <p style="font-family:'Noto Serif JP',serif;font-size:20px;font-weight:900;color:#2e1c1b;margin-bottom:18px;">あなたも、まず1回試してみませんか？</p>
+  <a href="#reserve" class="btn-red" style="display:inline-block;padding:16px 40px;font-size:16px;">体験レッスンを予約する（1,100円）</a>
+  <p style="font-size:11px;color:var(--light);margin-top:12px;">通常10,000円 → 初回体験のみ1,100円・強制入会なし</p>
+</div>
 
 <!-- ===== MENU ===== -->
-<section class="section menu-section">
-  <div class="inner">
-    <div class="reveal">
-      <div class="eyebrow eyebrow-white">Menu</div>
-      <h2 class="heading heading-white">
-        あなたの目標に合わせた<br><em>2つのメニュー</em>
-      </h2>
+<section class="sec bg-blush">
+  <div class="wrap">
+    <div class="rv">
+      <div class="lbl">メニュー</div>
+      <h2 class="ttl">目標に合わせた<em>2つのコース</em></h2>
     </div>
     <div class="menu-grid">
-      <div class="menu-card reveal-left">
-        <div class="menu-card-img">
-          <img src="assets/Bridal - 26.PNG" alt="パーソナルトレーニング">
-          <div class="menu-card-img-overlay"></div>
-          <div class="menu-card-img-label">パーソナルトレーニング</div>
-        </div>
-        <div class="menu-card-body">
-          <p class="menu-card-desc">
-            動作分析をもとに設計された、あなた専用のプログラム。理学療法士が正しいフォームを徹底指導し、確実に体を変えます。
-          </p>
-          <div class="menu-feats">
-            <span class="menu-feat">動作分析付き</span>
-            <span class="menu-feat">完全マンツーマン</span>
-            <span class="menu-feat">食事指導</span>
-            <span class="menu-feat">記録管理</span>
-          </div>
-          <div class="menu-price">
-            <div>
-              <div class="menu-price-trial">TRIAL PRICE</div>
-              <div class="menu-price-num"><span>¥</span>1,100<span> /50分</span></div>
-            </div>
-            <a href="#reserve" class="menu-cta">予約する</a>
-          </div>
+      <div class="mc rv">
+        <div class="mc-img"><img src="assets/Bridal - 26.PNG" alt="パーソナルトレーニング"><div class="mc-ov"></div><div class="mc-ttl">パーソナルトレーニング</div></div>
+        <div class="mc-body">
+          <p class="mc-desc">動作分析をもとに設計した、あなた専用プログラム。理学療法士が正しいフォームを徹底指導し、確実に体を変えます。</p>
+          <div class="mc-tags"><span class="mc-tag">動作分析付き</span><span class="mc-tag">完全マンツーマン</span><span class="mc-tag">食事指導</span></div>
+          <div class="mc-row"><div><div class="mc-lbl">体験価格</div><div class="mc-price"><small>¥</small>1,100<small> /50分</small></div></div><a href="#reserve" class="mc-btn">予約する</a></div>
         </div>
       </div>
-      <div class="menu-card reveal-right">
-        <div class="menu-card-img">
-          <img src="assets/Bridal - 27.PNG" alt="整体×トレーニング">
-          <div class="menu-card-img-overlay"></div>
-          <div class="menu-card-img-label">整体 × トレーニング</div>
-        </div>
-        <div class="menu-card-body">
-          <p class="menu-card-desc">
-            骨格・骨盤の歪みを整体で整えてから鍛える、Body Nate独自のメソッド。腰痛・肩こりの改善も同時に叶えます。
-          </p>
-          <div class="menu-feats">
-            <span class="menu-feat">骨格矯正</span>
-            <span class="menu-feat">筋膜リリース</span>
-            <span class="menu-feat">慢性痛改善</span>
-            <span class="menu-feat">体質改善</span>
-          </div>
-          <div class="menu-price">
-            <div>
-              <div class="menu-price-trial">TRIAL PRICE</div>
-              <div class="menu-price-num"><span>¥</span>1,100<span> /50分</span></div>
-            </div>
-            <a href="#reserve" class="menu-cta">予約する</a>
-          </div>
+      <div class="mc rv">
+        <div class="mc-img"><img src="assets/Bridal - 27.PNG" alt="整体×トレーニング"><div class="mc-ov"></div><div class="mc-ttl">整体 × トレーニング</div></div>
+        <div class="mc-body">
+          <p class="mc-desc">骨格・骨盤の歪みを整体で整えてから鍛えるBody Nate独自のメソッド。腰痛・肩こりの改善も同時に叶います。</p>
+          <div class="mc-tags"><span class="mc-tag">骨格矯正</span><span class="mc-tag">慢性痛改善</span><span class="mc-tag">体質改善</span></div>
+          <div class="mc-row"><div><div class="mc-lbl">体験価格</div><div class="mc-price"><small>¥</small>1,100<small> /50分</small></div></div><a href="#reserve" class="mc-btn">予約する</a></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== GALLERY STRIP ===== -->
-<div style="padding:0;overflow:hidden;">
-  <div class="gallery-strip">
-    <div class="gallery-item main">
-      <img src="assets/IMG_8596 2.jpg" alt="Body Nate 店内">
-    </div>
-    <div class="gallery-item tr">
-      <img src="assets/IMG_8595 2.jpg" alt="トレーニング機器">
-    </div>
-    <div class="gallery-item br">
-      <img src="assets/IMG_8592 2.jpg" alt="カウンセリング">
-    </div>
-  </div>
+<!-- GALLERY -->
+<div class="gallery">
+  <div class="gl-c main"><img src="assets/IMG_8596 2.jpg" alt="店内"></div>
+  <div class="gl-c"><img src="assets/IMG_8595 2.jpg" alt="機器"></div>
+  <div class="gl-c"><img src="assets/IMG_8592 2.jpg" alt="カウンセリング"></div>
 </div>
 
 <!-- ===== TRAINER ===== -->
-<section class="section trainer-section">
-  <div class="inner">
+<section class="sec bg-white">
+  <div class="wrap">
+    <div class="rv">
+      <div class="lbl">担当トレーナー</div>
+      <h2 class="ttl">理学療法士として、<br><em>あなたの体を本気で変えます。</em></h2>
+    </div>
     <div class="trainer-grid">
-      <div class="trainer-photo-wrap reveal-left">
+      <div class="trainer-photo-wrap rv">
         <div class="trainer-photo">
-          <img src="assets/IMG_6811.JPG" alt="トレーナー">
+          <img src="assets/IMG_6811.JPG" alt="トレーナープロフィール">
         </div>
-        <div class="trainer-cert">
-          <div class="trainer-cert-num">PT</div>
-          <div class="trainer-cert-label">LICENSED</div>
+        <div class="t-badge">
+          <div class="t-badge-big">PT</div>
+          <div class="t-badge-sm">理学療法士</div>
         </div>
       </div>
-      <div class="trainer-info reveal-right">
-        <div class="trainer-name-en">Trainer</div>
-        <div class="trainer-name-ja">Body Nate 神戸三宮店</div>
-        <div class="trainer-roles">
-          <span class="trainer-role">理学療法士</span>
-          <span class="trainer-role">パーソナルトレーナー</span>
-          <span class="trainer-role">整体師</span>
-          <span class="trainer-role">女性専門</span>
-        </div>
-        <p class="trainer-bio">
-          理学療法士として培った身体構造の知識と、パーソナルトレーナーとしての指導経験を組み合わせた、Body Nate独自のアプローチを提供しています。<br><br>
-          「なぜ変われないのか」を医療的な視点で分析し、ただ痩せるだけでなく、健康的で美しい体づくりをサポートします。30〜50代女性特有のお悩みに寄り添い、一人ひとりに最適なプログラムを提供します。
+      <div class="trainer-info rv">
+        <div class="t-en">Trainer</div>
+        <div class="t-jp">Body Nate 神戸三宮店</div>
+        <div class="t-cert">🏥 理学療法士（国家資格）</div>
+        <p class="t-bio">
+          理学療法士として医療現場で培った「体の見かた」を活かし、Body Nateを立ち上げました。<br><br>
+          「なぜ変われないのか」を医療的な視点で分析し、痛みのない・疲れにくい・美しい体づくりをサポートします。<br><br>
+          30〜50代女性特有のお悩み（産後体型・更年期・慢性痛）に寄り添い、一人ひとりに最適なプログラムを提供します。
         </p>
-        <div class="trainer-stats">
-          <div>
-            <div class="trainer-stat-num">500<span>+</span></div>
-            <div class="trainer-stat-label">施術実績</div>
-          </div>
-          <div>
-            <div class="trainer-stat-num">3<span>資格</span></div>
-            <div class="trainer-stat-label">保有資格数</div>
-          </div>
-          <div>
-            <div class="trainer-stat-num">98<span>%</span></div>
-            <div class="trainer-stat-label">継続率</div>
-          </div>
+        <div class="t-stats">
+          <div><div class="t-snum">500<small>+</small></div><div class="t-slbl">施術実績</div></div>
+          <div><div class="t-snum">98<small>%</small></div><div class="t-slbl">継続率</div></div>
         </div>
-        <a href="#reserve" class="btn-primary">このトレーナーに相談する →</a>
+        <a href="#reserve" class="btn-red" style="display:inline-block;padding:14px 28px;">このトレーナーに相談してみる →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== STORE ===== -->
-<div class="store-section">
-  <div class="store-grid">
-    <div class="store-photo">
-      <img src="assets/IMG_8596 2.jpg" alt="Body Nate 神戸三宮店">
-    </div>
-    <div class="store-info">
-      <div class="eyebrow eyebrow-white">Access</div>
-      <h2 class="heading heading-white">Body<em>Nate</em><br>神戸三宮店</h2>
-      <div class="store-detail">
-        <div class="store-row">
-          <span class="store-row-label">住所</span>
-          <span class="store-row-val">神戸市中央区三宮<br>（詳細はご予約後にご案内します）</span>
-        </div>
-        <div class="store-row">
-          <span class="store-row-label">営業時間</span>
-          <span class="store-row-val">完全予約制<br>ご希望の時間帯をご相談ください</span>
-        </div>
-        <div class="store-row">
-          <span class="store-row-label">アクセス</span>
-          <span class="store-row-val">三宮駅より徒歩圏内</span>
-        </div>
-        <div class="store-row">
-          <span class="store-row-label">駐車場</span>
-          <span class="store-row-val">近隣コインパーキングをご利用ください</span>
-        </div>
-      </div>
+<!-- CTA BAND 2 -->
+<div class="cband">
+  <div>
+    <div class="cband-txt">「変わりたい」その気持ち、<span>無駄にしないでください。</span></div>
+    <div style="font-size:12px;color:rgba(255,255,255,.75);margin-top:6px;">勧誘・強制入会は一切なし。体験だけでも大丈夫です。</div>
+  </div>
+  <a href="#reserve" class="btn-wh">体験予約はこちら →</a>
+</div>
+
+<!-- ===== ACCESS ===== -->
+<div class="access-grid">
+  <div class="access-photo">
+    <img src="assets/IMG_8596 2.jpg" alt="Body Nate 神戸三宮店">
+  </div>
+  <div class="access-info">
+    <div class="lbl">アクセス</div>
+    <h2 class="ttl">Body<em>Nate</em><br>神戸三宮店</h2>
+    <div class="a-rows">
+      <div class="a-row"><span class="a-lbl">住所</span><span class="a-val">神戸市中央区三宮<br>（詳細はご予約後にご案内します）</span></div>
+      <div class="a-row"><span class="a-lbl">営業時間</span><span class="a-val">完全予約制<br>ご希望の時間帯をご相談ください</span></div>
+      <div class="a-row"><span class="a-lbl">アクセス</span><span class="a-val">三宮駅より徒歩圏内</span></div>
+      <div class="a-row"><span class="a-lbl">駐車場</span><span class="a-val">近隣コインパーキングをご利用ください</span></div>
     </div>
   </div>
 </div>
 
 <!-- ===== FINAL CTA ===== -->
-<section class="final-cta" id="reserve">
-  <div class="final-cta-bg"></div>
-  <div class="final-cta-content reveal">
-    <div class="eyebrow eyebrow-white" style="justify-content:center;">Trial Lesson</div>
-    <h2 class="heading heading-white" style="margin-top:16px;">
-      変わるための<em>最初の一歩</em>を、<br>今日ここから。
+<section class="final" id="reserve">
+  <img class="final-bg" src="assets/IMG_8592 2.jpg" alt="">
+  <div class="final-ov"></div>
+  <div class="final-body rv">
+    <div class="lbl" style="justify-content:center;">今だけ！初回体験特別価格</div>
+    <h2 class="ttl" style="margin-top:10px;">
+      ずっと諦めてた体型、<br>
+      <em>本当は変えられます。</em>
     </h2>
-    <div class="final-price-display"><span>¥</span>1,100</div>
-    <p class="final-price-note">体験レッスン 50分 / 完全マンツーマン / 理学療法士担当</p>
-    <a href="#" class="btn-large">📅 体験レッスンを予約する</a>
-    <div class="final-reassure">
-      <div class="final-reassure-item">理学療法士が担当</div>
-      <div class="final-reassure-item">勧誘・強制入会なし</div>
-      <div class="final-reassure-item">初心者・運動未経験OK</div>
-      <div class="final-reassure-item">完全マンツーマン</div>
-      <div class="final-reassure-item">当日キャンセル可</div>
+    <p style="font-size:14px;color:var(--mid);margin-top:8px;line-height:1.8;">まず1回、動作分析＋体験レッスンを受けてみてください。<br>変われない理由がわかるだけでも、来た価値があります。</p>
+
+    <div style="margin:24px 0 4px;font-size:13px;color:var(--mid);text-decoration:line-through;">通常価格 ¥10,000</div>
+    <div class="final-price"><small>¥</small>1,100</div>
+    <p class="final-note">体験レッスン 50分 ／ 完全マンツーマン ／ 理学療法士担当</p>
+
+    <a href="#" class="btn-big">📅 体験レッスンを予約する（1,100円）</a>
+
+    <div style="margin-top:20px;padding:16px 20px;background:rgba(224,114,142,.08);border-radius:10px;display:inline-block;text-align:left;max-width:380px;width:100%;">
+      <p style="font-size:12px;font-weight:700;color:var(--red);margin-bottom:8px;">体験レッスンで受けられること</p>
+      <p style="font-size:12px;color:var(--mid);line-height:2;">✓ 動作分析（変われない原因がわかる）<br>✓ 骨盤・姿勢チェック<br>✓ あなた専用プログラムのご提案<br>✓ 整体 or トレーニング体験（50分）</p>
+    </div>
+
+    <div class="reassures" style="margin-top:20px;">
+      <div class="ri">理学療法士が担当</div>
+      <div class="ri">勧誘・強制入会なし</div>
+      <div class="ri">初心者・運動未経験OK</div>
+      <div class="ri">産後・慢性痛の方もOK</div>
     </div>
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
 <footer>
   <div>
-    <div class="footer-logo">Body<em>Nate</em></div>
-    <div style="font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:2px;margin-top:4px;">KOBE SANNOMIYA</div>
+    <div class="f-logo">Body<span>Nate</span></div>
+    <div style="font-size:9px;color:rgba(255,255,255,.25);letter-spacing:2px;margin-top:3px;">KOBE SANNOMIYA</div>
   </div>
-  <div class="footer-info">
-    エステティック＆トレーニングサロン<br>
-    © 2026 Body Nate 神戸三宮店. All rights reserved.
-  </div>
+  <div class="f-copy">パーソナルトレーニングサロン<br>© 2026 Body Nate 神戸三宮店. All rights reserved.</div>
 </footer>
 
 <script>
-  // ===== HEADER SCROLL =====
-  const header = document.getElementById('header');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 60) header.classList.add('scrolled');
-    else header.classList.remove('scrolled');
-  });
-
-  // ===== SCROLL REVEAL =====
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right')
-    .forEach(el => observer.observe(el));
+  const hd = document.getElementById('hd');
+  window.addEventListener('scroll', () => hd.classList.toggle('sc', scrollY > 50));
+  const obs = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
