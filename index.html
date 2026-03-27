@@ -1,565 +1,472 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Body Nate 神戸三宮店｜理学療法士が担当するパーソナルトレーニング</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
-  <style>
-/* ─── RESET ─── */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Body Nate 神戸三宮店｜理学療法士のパーソナルトレーニング</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+<style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html,body{overflow-x:hidden;max-width:100%;}
 html{scroll-behavior:smooth;}
-body{font-family:'Noto Sans JP',sans-serif;background:#fff8fa;color:#3d1a24;width:100%;}
+body{font-family:'Noto Sans JP',sans-serif;background:#fff;color:#3a1e28;width:100%;}
 img{max-width:100%;height:auto;display:block;}
 a{text-decoration:none;}
-p,li{overflow-wrap:break-word;word-break:normal;}
+p,li,span{overflow-wrap:break-word;word-break:normal;}
 
-/* ─── VARIABLES ─── */
+/* ── TOKENS ── */
 :root{
-  --pk:#e8839b;   /* main rose pink */
-  --pk2:#f4b8cb;  /* light pink */
-  --pk3:#fde8ef;  /* pale bg */
-  --peach:#ffd4a3;/* peach accent */
-  --gold:#f5c030; /* gold yellow */
-  --cream:#fff5f8;
-  --blush:#fdedf2;
+  --rose:#c95e7b;
+  --rose2:#e8a0b4;
+  --rose3:#f9e4ec;
+  --peach:#f0b48a;
+  --gold:#f2c96e;
+  --cream:#fff8fb;
+  --blush:#fdeef5;
   --white:#ffffff;
-  --tx:#3d1a24;
-  --mid:#845060;
-  --light:#c8899a;
+  --tx:#3a1e28;
+  --mid:#7a4d5e;
+  --lt:#c49aab;
 }
 
-/* ─── ANIMATION ─── */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease;}
+/* ── ANIMATION ── */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
 .rv.on{opacity:1;transform:none;}
 
-/* ─── FLOAT CTA ─── */
+/* ── FLOAT CTA ── */
 .fcta{
-  position:fixed;bottom:16px;right:12px;z-index:999;
-  background:linear-gradient(135deg,var(--pk),#d0587a);
-  color:#fff;padding:14px 20px;border-radius:50px;
-  font-size:13px;font-weight:700;letter-spacing:.3px;
+  position:fixed;bottom:16px;right:14px;z-index:999;
+  background:linear-gradient(135deg,var(--rose),#a83a5a);
+  color:#fff;padding:13px 20px;border-radius:50px;
+  font-size:13px;font-weight:700;
   display:flex;align-items:center;gap:7px;
-  box-shadow:0 6px 24px rgba(232,131,155,.55);
+  box-shadow:0 6px 22px rgba(201,94,123,.5);
   white-space:nowrap;
 }
-.dot{width:8px;height:8px;background:#fff;border-radius:50%;animation:blink 1.3s infinite;flex-shrink:0;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.dot{width:7px;height:7px;background:#fff;border-radius:50%;animation:blink 1.3s infinite;flex-shrink:0;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 
-/* ─── HEADER ─── */
+/* ── HEADER ── */
 header{
   position:fixed;top:0;left:0;right:0;z-index:998;
   padding:12px 18px;
   display:flex;justify-content:space-between;align-items:center;
 }
-header.sc{
-  background:rgba(255,248,250,.97);
-  backdrop-filter:blur(12px);
-  box-shadow:0 1px 14px rgba(232,131,155,.1);
-}
+header.sc{background:rgba(255,248,251,.97);backdrop-filter:blur(14px);box-shadow:0 1px 12px rgba(201,94,123,.08);}
 .logo{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:900;color:#fff;letter-spacing:1px;}
-.logo b{color:rgba(255,210,200,.95);}
-.logo-sub{font-size:8px;color:rgba(255,255,255,.45);letter-spacing:2px;display:block;text-transform:uppercase;}
+.logo b{color:rgba(255,210,220,.9);}
+.logo-sub{font-size:8px;color:rgba(255,255,255,.4);letter-spacing:2px;display:block;text-transform:uppercase;}
 header.sc .logo{color:var(--tx);}
-header.sc .logo b{color:var(--pk);}
-header.sc .logo-sub{color:var(--light);}
-.hcta{
-  border:1.5px solid rgba(255,255,255,.85);color:#fff;
-  padding:8px 18px;border-radius:50px;font-size:12px;font-weight:700;
-  white-space:nowrap;
-}
-header.sc .hcta{border-color:var(--pk);color:var(--pk);}
-@media(min-width:768px){
-  header{padding:16px 48px;}
-  .logo{font-size:24px;}
-}
+header.sc .logo b{color:var(--rose);}
+header.sc .logo-sub{color:var(--lt);}
+.hcta{border:1.5px solid rgba(255,255,255,.8);color:#fff;padding:8px 18px;border-radius:50px;font-size:12px;font-weight:700;white-space:nowrap;}
+header.sc .hcta{border-color:var(--rose);color:var(--rose);}
+@media(min-width:768px){header{padding:16px 52px;}.logo{font-size:24px;}}
 
-/* ─── HERO ─── */
+/* ══════════════════════════════════
+   HERO  — CSS グラデーション
+══════════════════════════════════ */
 .hero{
   position:relative;
-  height:54svh;min-height:300px;max-height:480px;
+  min-height:56svh;
   display:flex;flex-direction:column;justify-content:flex-end;
   overflow:hidden;
+  /* 女性らしいグラデーション背景 */
+  background:linear-gradient(145deg,#6b2040 0%,#9e3a58 30%,#c96280 60%,#e89aaa 100%);
 }
-.hero-bg{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  object-fit:cover;object-position:center 20%;
+/* デコ: 右上の大きな円 */
+.hero::before{
+  content:'';
+  position:absolute;top:-80px;right:-60px;
+  width:280px;height:280px;
+  border-radius:50%;
+  background:rgba(255,255,255,.07);
+  pointer-events:none;
 }
-.hero-ov{
-  position:absolute;inset:0;
-  background:linear-gradient(
-    160deg,
-    rgba(220,80,120,.08) 0%,
-    rgba(30,5,20,.15) 30%,
-    rgba(50,10,30,.72) 70%,
-    rgba(45,8,28,.88) 100%
-  );
+/* デコ: 左下の円 */
+.hero::after{
+  content:'';
+  position:absolute;bottom:-40px;left:-50px;
+  width:200px;height:200px;
+  border-radius:50%;
+  background:rgba(255,200,180,.1);
+  pointer-events:none;
 }
-/* 左上: タグバッジ */
-.hero-badge-tl{
-  position:absolute;top:66px;left:18px;z-index:3;
+/* 花びら風デコ SVG */
+.hero-deco{
+  position:absolute;right:0;top:0;bottom:0;
+  width:55%;opacity:.12;pointer-events:none;
+  overflow:hidden;
+}
+.hero-deco svg{width:100%;height:100%;}
+
+/* 左上バッジ */
+.hero-tag{
+  position:absolute;top:66px;left:18px;z-index:2;
   display:inline-flex;align-items:center;gap:6px;
 }
-.hbtl-pill{
+.htag-pill{
   background:var(--gold);
-  color:#5a3200;font-size:10px;font-weight:900;letter-spacing:.5px;
-  padding:4px 12px;border-radius:20px;white-space:nowrap;
-  box-shadow:0 2px 8px rgba(245,192,48,.45);
+  color:#5a2e00;font-size:10px;font-weight:900;letter-spacing:.5px;
+  padding:4px 13px;border-radius:20px;
+  box-shadow:0 3px 10px rgba(242,201,110,.5);
 }
-.hbtl-sep{color:rgba(255,255,255,.5);font-size:10px;}
-.hbtl-txt{color:rgba(255,255,255,.8);font-size:10px;font-weight:500;}
+.htag-txt{color:rgba(255,255,255,.75);font-size:10px;}
+
+/* 価格バッジ PC */
+.hero-price-pc{
+  position:absolute;right:52px;bottom:64px;z-index:2;
+  background:rgba(255,255,255,.96);
+  border-radius:16px;padding:14px 22px;text-align:center;
+  box-shadow:0 6px 24px rgba(0,0,0,.14);
+  display:none;
+}
+@media(min-width:768px){.hero-price-pc{display:block;}}
+.hpp-lbl{font-size:9px;font-weight:700;color:var(--rose);letter-spacing:.5px;}
+.hpp-price{font-family:'Noto Serif JP',serif;font-size:38px;font-weight:900;color:var(--tx);line-height:1;}
+.hpp-note{font-size:10px;color:var(--mid);margin-top:2px;}
+
 /* テキスト本体 */
-.hero-text{position:relative;z-index:2;padding:0 18px 22px;}
-.hero-en{
-  font-size:9px;letter-spacing:3px;color:rgba(255,255,255,.45);
-  text-transform:uppercase;margin-bottom:8px;
+.hero-txt{
+  position:relative;z-index:2;
+  padding:0 20px 24px;
 }
+.hero-en{font-size:9px;letter-spacing:3px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:10px;}
 .hero-h1{
   font-family:'Noto Serif JP',serif;
-  font-size:clamp(26px,8.5vw,68px);
-  font-weight:900;color:#fff;line-height:1.32;
-  margin-bottom:10px;
+  font-size:clamp(30px,9vw,72px);
+  font-weight:900;color:#fff;line-height:1.3;
+  margin-bottom:12px;
+  text-shadow:0 2px 20px rgba(80,0,30,.3);
   word-break:normal;overflow-wrap:break-word;
-  text-shadow:0 2px 18px rgba(0,0,0,.4);
-  letter-spacing:.02em;
 }
 .hero-h1 em{font-style:normal;color:var(--gold);}
-.hero-sub-copy{
-  font-size:12px;color:rgba(255,255,255,.82);
-  line-height:1.8;margin-bottom:16px;
-  padding-left:10px;
-  border-left:3px solid var(--pk2);
+.hero-sub{
+  font-size:13px;color:rgba(255,255,255,.85);
+  line-height:1.9;margin-bottom:20px;
+  border-left:3px solid rgba(255,210,220,.6);
+  padding-left:12px;
   word-break:normal;overflow-wrap:break-word;
 }
-/* Hero CTA - 大きめ */
-.hero-cta{
+/* Hero CTA — 大きく */
+.btn-hero{
   display:block;width:100%;
-  background:linear-gradient(135deg,var(--pk) 0%,#d0587a 100%);
-  color:#fff;padding:17px 20px;border-radius:10px;
+  background:#fff;color:var(--rose);
+  padding:18px 20px;border-radius:12px;
   font-size:15px;font-weight:900;text-align:center;
-  box-shadow:0 6px 24px rgba(232,131,155,.55);
-  letter-spacing:.3px;
+  box-shadow:0 6px 22px rgba(255,255,255,.25);
+  letter-spacing:.2px;
 }
-/* Hero price bar */
-.hero-pricebar{
-  position:absolute;right:16px;bottom:22px;z-index:3;
-  background:rgba(255,255,255,.97);
-  border-radius:10px;padding:10px 14px;text-align:center;
-  box-shadow:0 4px 16px rgba(0,0,0,.12);
+/* 価格バー SP */
+.hero-bar{
+  position:relative;z-index:2;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(8px);
+  margin:0 16px;border-radius:10px 10px 0 0;
+  padding:10px 18px;
+  display:flex;justify-content:space-between;align-items:center;
 }
-.hp-lbl{font-size:9px;font-weight:700;color:var(--pk);letter-spacing:.5px;}
-.hp-price{font-family:'Noto Serif JP',serif;font-size:28px;font-weight:900;color:var(--tx);line-height:1;}
-.hp-note{font-size:9px;color:var(--mid);margin-top:2px;}
-@media(max-width:767px){.hero-pricebar{display:none;}}
+.hbar-l{font-size:10px;color:rgba(255,255,255,.7);font-weight:700;}
+.hbar-p{font-family:'Noto Serif JP',serif;font-size:28px;font-weight:900;color:#fff;line-height:1;}
+
 @media(min-width:768px){
-  .hero{height:62svh;max-height:680px;}
-  .hero-text{padding:0 60px 72px;max-width:700px;}
-  .hero-h1{font-size:clamp(40px,5.5vw,76px);}
-  .hero-sub-copy{font-size:14px;}
-  .hero-cta{display:inline-block;padding:18px 48px;width:auto;}
-  .hero-badge-tl{top:84px;left:60px;}
+  .hero{min-height:62svh;flex-direction:row;align-items:flex-end;}
+  .hero-txt{padding:0 64px 72px;max-width:680px;}
+  .hero-h1{font-size:clamp(44px,5.5vw,78px);}
+  .hero-sub{font-size:15px;}
+  .btn-hero{display:inline-block;width:auto;padding:18px 48px;}
+  .hero-bar{display:none;}
+  .hero-deco{width:44%;}
 }
 
-/* ─── 3 REASONS (below hero, above fold) ─── */
-.reasons{
-  background:#fff;
-  border-top:3px solid var(--pk);
-}
-/* ヘッダー帯 */
+/* ══════════════════════════════════
+   3 REASONS
+══════════════════════════════════ */
+.reasons{background:#fff;border-top:3px solid var(--rose);}
 .reasons-hd{
-  background:linear-gradient(90deg,var(--pk) 0%,#f06090 50%,var(--pk) 100%);
-  padding:12px 16px;
-  text-align:center;
+  background:linear-gradient(90deg,var(--rose) 0%,#e07090 50%,var(--rose) 100%);
+  padding:11px 16px;text-align:center;
 }
-.reasons-hd-txt{
+.reasons-hd p{
   font-family:'Noto Serif JP',serif;
-  font-size:clamp(13px,4vw,18px);
-  font-weight:900;color:#fff;letter-spacing:.05em;
+  font-size:clamp(13px,4vw,18px);font-weight:900;color:#fff;letter-spacing:.05em;
 }
-.reasons-hd-txt span{
-  background:var(--gold);color:#5a3200;
-  padding:1px 6px;margin:0 4px;border-radius:3px;
+.reasons-hd p span{
+  background:var(--gold);color:#5a2e00;
+  padding:1px 7px;margin:0 4px;border-radius:4px;
   font-size:clamp(15px,4.5vw,20px);
 }
-/* グリッド */
-.reasons-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  border-bottom:1px solid var(--pk3);
-}
-.r-item{
-  padding:14px 10px 16px;
-  text-align:center;
-  border-right:1px solid var(--pk3);
-  position:relative;
-}
+.reasons-grid{display:grid;grid-template-columns:repeat(3,1fr);}
+.r-item{padding:14px 10px 16px;text-align:center;border-right:1px solid var(--rose3);}
 .r-item:last-child{border-right:none;}
-/* 羽(ローレル)デコレーション */
-.r-num-wrap{
-  display:flex;align-items:center;justify-content:center;gap:4px;
-  margin-bottom:6px;
-}
-.r-num{
-  font-family:'Noto Serif JP',serif;
-  font-size:clamp(18px,4.5vw,24px);font-weight:900;color:var(--pk);
-  line-height:1;
-}
-/* SVGローレル */
-.r-wing{display:flex;align-items:center;gap:2px;}
-.r-wing svg{width:clamp(18px,4vw,26px);height:clamp(10px,2.5vw,14px);}
-.r-wing.flip svg{transform:scaleX(-1);}
-.r-icon{font-size:clamp(22px,5.5vw,30px);margin-bottom:5px;line-height:1;}
-.r-ttl{
-  font-size:clamp(10px,2.8vw,13px);font-weight:900;color:var(--tx);
-  line-height:1.55;margin-bottom:4px;
-  word-break:normal;overflow-wrap:break-word;
-}
-.r-ttl em{font-style:normal;color:var(--pk);}
-.r-txt{
-  font-size:clamp(8.5px,2vw,11px);color:var(--mid);
-  line-height:1.65;word-break:normal;overflow-wrap:break-word;
-  display:none; /* モバイルでは省略 */
-}
+.r-num-row{display:flex;align-items:center;justify-content:center;gap:3px;margin-bottom:5px;}
+.r-num{font-family:'Noto Serif JP',serif;font-size:clamp(16px,4.5vw,22px);font-weight:900;color:var(--rose);line-height:1;}
+/* SVG ローレル */
+.r-w svg{width:clamp(16px,4vw,24px);height:auto;}
+.r-w.flip svg{transform:scaleX(-1);}
+.r-icon{font-size:clamp(22px,5.5vw,28px);margin-bottom:4px;line-height:1;}
+.r-ttl{font-size:clamp(10px,2.7vw,12px);font-weight:900;color:var(--tx);line-height:1.55;word-break:normal;overflow-wrap:break-word;}
+.r-ttl em{font-style:normal;color:var(--rose);}
 @media(min-width:768px){
-  .r-item{padding:22px 18px 24px;}
-  .r-ttl{font-size:14px;}
-  .r-txt{font-size:12px;display:block;}
-  .r-icon{font-size:32px;}
+  .r-item{padding:22px 20px 26px;}
+  .r-ttl{font-size:13px;}
+  .r-icon{font-size:30px;}
+  .r-sub{display:block;font-size:11px;color:var(--mid);margin-top:5px;line-height:1.65;word-break:normal;overflow-wrap:break-word;}
 }
+.r-sub{display:none;}
 
-/* ─── MARQUEE ─── */
-.mq-wrap{
-  background:linear-gradient(90deg,#e87090 0%,#f4b0c0 50%,#e87090 100%);
-  padding:9px 0;overflow:hidden;width:100%;
-}
+/* ── MARQUEE ── */
+.mq-wrap{background:linear-gradient(90deg,#b84a6a 0%,#e07090 50%,#b84a6a 100%);padding:8px 0;overflow:hidden;width:100%;}
 .mq{display:flex;animation:mq 26s linear infinite;}
-.mq-item{font-size:10px;font-weight:700;letter-spacing:2px;color:#fff;white-space:nowrap;padding:0 20px;flex-shrink:0;}
-.mq-item::after{content:'✦';margin-left:20px;opacity:.5;}
+.mq-i{font-size:10px;font-weight:700;letter-spacing:2px;color:#fff;white-space:nowrap;padding:0 20px;flex-shrink:0;}
+.mq-i::after{content:'✦';margin-left:20px;opacity:.45;}
 @keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-/* ─── SECTION ─── */
+/* ── SECTION BASE ── */
 .sec{width:100%;padding:52px 20px;}
 .wrap{width:100%;max-width:1060px;margin:0 auto;}
 @media(min-width:768px){.sec{padding:88px 48px;}}
-.bg-pale{background:var(--cream);}
-.bg-blush{background:var(--blush);}
-.bg-white{background:#fff;}
 
-/* ─── HEADINGS ─── */
-.lbl{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:10px;font-weight:700;letter-spacing:3px;
-  text-transform:uppercase;color:var(--pk);margin-bottom:10px;
-}
-.lbl::before{content:'';width:18px;height:2px;background:var(--pk);flex-shrink:0;}
-.ttl{
-  font-family:'Noto Serif JP',serif;
-  font-size:clamp(22px,5vw,42px);
-  font-weight:900;line-height:1.5;color:var(--tx);
-  margin-bottom:12px;word-break:normal;overflow-wrap:break-word;
-}
-.ttl em{font-style:normal;color:var(--pk);}
-.lead{font-size:14px;line-height:2;color:var(--mid);word-break:normal;overflow-wrap:break-word;max-width:100%;}
+/* ── SECTION BG VARIANTS ── */
+.bg-c{background:var(--cream);}
+.bg-b{background:var(--blush);}
+.bg-w{background:#fff;}
+
+/* SVG wave divider */
+.wave{display:block;width:100%;height:40px;overflow:hidden;line-height:0;}
+.wave svg{display:block;}
+
+/* ── LABELS / TITLES ── */
+.lbl{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:10px;}
+.lbl::before{content:'';width:18px;height:2px;background:var(--rose);flex-shrink:0;}
+.ttl{font-family:'Noto Serif JP',serif;font-size:clamp(22px,5vw,40px);font-weight:900;line-height:1.5;color:var(--tx);margin-bottom:12px;word-break:normal;overflow-wrap:break-word;}
+.ttl em{font-style:normal;color:var(--rose);}
+.lead{font-size:14px;line-height:2.1;color:var(--mid);word-break:normal;overflow-wrap:break-word;max-width:100%;}
 @media(min-width:768px){.lead{font-size:15px;}}
 
-/* ─── GRID ─── */
+/* ── GRID ── */
 .grid2{display:grid;grid-template-columns:1fr;gap:28px;margin-top:32px;}
 @media(min-width:768px){.grid2{grid-template-columns:1fr 1fr;gap:52px;align-items:center;}}
 .grid2>*{min-width:0;}
 
-/* ─── BUTTONS ─── */
+/* ── BUTTONS ── */
 .btn-main{
   display:block;width:100%;
-  background:linear-gradient(135deg,var(--pk) 0%,#d0587a 100%);
-  color:#fff;padding:18px 24px;border-radius:10px;
+  background:linear-gradient(135deg,var(--rose) 0%,#a83a5a 100%);
+  color:#fff;padding:19px 24px;border-radius:50px;
   font-size:16px;font-weight:900;text-align:center;
-  box-shadow:0 6px 24px rgba(232,131,155,.45);
-  letter-spacing:.3px;
-}
-.btn-sub{
-  display:block;width:100%;
-  background:#fff;color:var(--pk);
-  padding:16px 24px;border-radius:10px;
-  font-size:15px;font-weight:700;text-align:center;
-  border:2px solid var(--pk2);
+  box-shadow:0 6px 24px rgba(201,94,123,.4);
+  letter-spacing:.2px;
 }
 .btn-wh{
-  display:block;background:#fff;color:var(--pk);
-  padding:14px 20px;border-radius:8px;
-  font-size:14px;font-weight:700;text-align:center;
-  border:none;
+  display:block;background:#fff;color:var(--rose);
+  padding:16px 32px;border-radius:50px;
+  font-size:15px;font-weight:900;text-align:center;
+  border:2px solid var(--rose2);
 }
-.btn-outline-w{
-  display:block;border:2px solid rgba(255,255,255,.75);color:#fff;
-  padding:15px 20px;border-radius:10px;font-size:14px;text-align:center;
-}
-@media(min-width:768px){
-  .btn-main,.btn-sub,.btn-wh,.btn-outline-w{
-    display:inline-block;width:auto;padding:16px 40px;
-  }
-}
+@media(min-width:768px){.btn-main,.btn-wh{display:inline-block;width:auto;}}
 
-/* ─── PHOTO CAPTION ─── */
-.photo-cap{border-radius:16px;overflow:hidden;position:relative;}
-.photo-cap img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center;}
-.photo-caption{
-  position:absolute;bottom:0;left:0;right:0;
-  background:linear-gradient(to top,rgba(0,0,0,.65),transparent);
-  padding:28px 18px 18px;color:#fff;
-}
-.photo-caption strong{font-size:15px;display:block;margin-bottom:3px;}
-.photo-caption span{font-size:12px;opacity:.85;}
-
-/* ─── CONCERN LIST ─── */
+/* ── CONCERN ── */
 .c-list{list-style:none;}
-.c-item{
-  display:flex;gap:12px;align-items:flex-start;
-  padding:13px 0;border-bottom:1px solid var(--pk3);
-  font-size:14px;color:var(--tx);line-height:1.8;
-}
-.c-item:first-child{border-top:1px solid var(--pk3);}
+.c-item{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--rose3);font-size:14px;color:var(--tx);line-height:1.8;}
+.c-item:first-child{border-top:1px solid var(--rose3);}
 .c-item>span:last-child{min-width:0;flex:1;overflow-wrap:break-word;}
-.c-n{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:900;color:var(--pk2);flex-shrink:0;width:30px;line-height:1;}
+.c-n{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:900;color:var(--rose2);flex-shrink:0;width:28px;line-height:1.1;}
 
-/* ─── PT IMAGES ─── */
+/* ── PHOTO-CAP ── */
+.photo-cap{border-radius:18px;overflow:hidden;position:relative;}
+.photo-cap img{width:100%;aspect-ratio:4/3;object-fit:cover;}
+.photo-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.62),transparent);padding:28px 18px 16px;color:#fff;}
+.photo-caption strong{font-size:14px;display:block;margin-bottom:2px;}
+.photo-caption span{font-size:12px;opacity:.85;}
+@media(min-width:768px){.photo-cap img{aspect-ratio:4/5;}}
+
+/* ── PT IMGS ── */
 .pt-imgs{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.pt-img{border-radius:10px;overflow:hidden;}
+.pt-img{border-radius:12px;overflow:hidden;}
 .pt-img img{width:100%;object-fit:cover;object-position:center top;}
 .pt-img.tall{grid-row:span 2;}
-.pt-img.tall img{height:280px;}
-.pt-img.sm img{height:134px;}
-@media(min-width:768px){.pt-img.tall img{height:400px;}.pt-img.sm img{height:194px;}}
+.pt-img.tall img{height:270px;}
+.pt-img.sm img{height:130px;}
+@media(min-width:768px){.pt-img.tall img{height:390px;}.pt-img.sm img{height:190px;}}
 
-/* ─── PT CARDS ─── */
+/* ── PT CARDS ── */
 .pt-cards{display:flex;flex-direction:column;gap:12px;}
-.ptc{
-  display:flex;gap:12px;align-items:flex-start;
-  background:#fff;border-radius:14px;padding:16px;
-  box-shadow:0 2px 12px rgba(232,131,155,.1);
-  border-left:4px solid var(--pk2);
-}
-.ptc>div:last-child{min-width:0;flex:1;overflow:hidden;}
-.ptc-ic{font-size:22px;flex-shrink:0;line-height:1;}
+.ptc{display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:14px;padding:16px;box-shadow:0 2px 14px rgba(201,94,123,.08);border-left:4px solid var(--rose2);}
+.ptc>div:last-child{min-width:0;flex:1;}
+.ptc-ic{font-size:22px;flex-shrink:0;}
 .ptc-ttl{font-size:13px;font-weight:700;margin-bottom:3px;overflow-wrap:break-word;}
 .ptc-txt{font-size:12px;color:var(--mid);line-height:1.8;overflow-wrap:break-word;}
 
-/* ─── CTA BAND ─── */
+/* ── CTA BAND ── */
 .cband{
-  background:linear-gradient(135deg,var(--pk) 0%,#d0587a 100%);
+  background:linear-gradient(135deg,var(--rose),#a83a5a);
   padding:32px 20px;
   display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;
 }
-.cband-txt{font-size:17px;font-weight:700;color:#fff;overflow-wrap:break-word;}
-.cband-txt span{color:#ffd4d0;}
-.cband .btn-wh{
-  padding:16px 36px;font-size:15px;font-weight:900;
-  border-radius:50px;
-  box-shadow:0 4px 16px rgba(0,0,0,.12);
-  width:100%;max-width:340px;
-}
+.cband-ttl{font-size:17px;font-weight:700;color:#fff;overflow-wrap:break-word;}
+.cband-ttl span{color:#ffd4dc;}
+.cband-note{font-size:12px;color:rgba(255,255,255,.7);}
+.cband .btn-wh{padding:16px 40px;font-size:15px;font-weight:900;box-shadow:0 4px 16px rgba(0,0,0,.12);width:100%;max-width:320px;}
 @media(min-width:768px){
   .cband{flex-direction:row;justify-content:space-between;padding:32px 64px;text-align:left;}
-  .cband-txt{font-size:20px;}
   .cband .btn-wh{width:auto;max-width:none;}
 }
 
-/* ─── MOTION STEPS ─── */
-.mstep{
-  display:flex;gap:12px;padding:15px 0;
-  border-bottom:1px solid var(--pk3);overflow:hidden;
-}
+/* ── STEPS ── */
+.mstep{display:flex;gap:12px;padding:15px 0;border-bottom:1px solid var(--rose3);}
 .mstep>div:last-child{min-width:0;flex:1;}
 .mstep:last-child{border-bottom:none;}
-.mn{font-family:'Noto Serif JP',serif;font-size:26px;font-weight:900;color:var(--pk2);flex-shrink:0;width:36px;line-height:1;}
+.mn{font-family:'Noto Serif JP',serif;font-size:26px;font-weight:900;color:var(--rose2);flex-shrink:0;width:34px;line-height:1.1;}
 .mt{font-size:13px;font-weight:700;margin-bottom:3px;overflow-wrap:break-word;}
 .md{font-size:12px;color:var(--mid);line-height:1.8;overflow-wrap:break-word;}
 
-/* ─── BEFORE/AFTER ─── */
-.ba-outer{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:28px 0 8px;}
-.ba-outer::-webkit-scrollbar{height:3px;}
-.ba-outer::-webkit-scrollbar-thumb{background:var(--pk2);border-radius:2px;}
-.ba-row{display:flex;gap:12px;padding:0 20px;}
-.ba-card{
-  width:200px;flex-shrink:0;border-radius:14px;overflow:hidden;
-  background:#fff;box-shadow:0 4px 18px rgba(232,131,155,.15);
+/* ── HIGHLIGHT BANNER (CSS bg) ── */
+.hbanner{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#7a2040 0%,#b84868 40%,#e08090 100%);
+  padding:52px 24px;text-align:center;
 }
-.ba-card img{width:100%;height:280px;object-fit:cover;object-position:top;display:block;}
+.hbanner::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:260px;height:260px;border-radius:50%;
+  background:rgba(255,255,255,.06);pointer-events:none;
+}
+.hbanner::after{
+  content:'';position:absolute;bottom:-40px;left:-40px;
+  width:180px;height:180px;border-radius:50%;
+  background:rgba(255,220,200,.08);pointer-events:none;
+}
+.hbanner .ttl{color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.2);}
+.hbanner .lead{color:rgba(255,255,255,.85);margin-bottom:24px;}
+@media(min-width:768px){.hbanner{padding:72px 80px;text-align:left;max-width:none;}}
+
+/* ── BEFORE/AFTER ── */
+.ba-outer{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:24px 0 8px;}
+.ba-outer::-webkit-scrollbar{height:3px;}
+.ba-outer::-webkit-scrollbar-thumb{background:var(--rose2);border-radius:2px;}
+.ba-row{display:flex;gap:12px;padding:0 20px;}
+.ba-card{width:195px;flex-shrink:0;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 4px 18px rgba(201,94,123,.13);}
+.ba-card img{width:100%;height:270px;object-fit:cover;object-position:top;}
 .ba-info{padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
 .ba-lbl{font-size:12px;font-weight:700;color:var(--tx);}
-.ba-tag{background:var(--pk3);color:var(--pk);font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
-@media(min-width:768px){
-  .ba-row{padding:0 48px;}
-  .ba-card{width:240px;}
-  .ba-card img{height:340px;}
-}
+.ba-tag{background:var(--rose3);color:var(--rose);font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+@media(min-width:768px){.ba-row{padding:0 48px;}.ba-card{width:230px;}.ba-card img{height:320px;}}
 
-/* ─── VOICES ─── */
+/* ── VOICES ── */
 .voices-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:32px;}
 @media(min-width:768px){.voices-grid{grid-template-columns:repeat(3,1fr);}}
-.vc{
-  background:#fff;border-radius:16px;padding:20px;
-  box-shadow:0 3px 16px rgba(232,131,155,.12);
-  overflow:hidden;width:100%;
-}
+.vc{background:#fff;border-radius:18px;padding:20px;box-shadow:0 3px 18px rgba(201,94,123,.1);overflow:hidden;width:100%;}
 .vc-profile{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.vc-av{
-  width:46px;height:46px;border-radius:50%;
-  background:linear-gradient(135deg,var(--pk2),var(--pk));
-  color:#fff;display:flex;align-items:center;justify-content:center;
-  font-size:20px;flex-shrink:0;
-}
-.vc-profile>div{min-width:0;overflow:hidden;}
-.vc-name{font-size:13px;font-weight:700;overflow-wrap:break-word;}
-.vc-meta{font-size:11px;color:var(--mid);margin-top:2px;overflow-wrap:break-word;word-break:normal;}
-.vc-tag{
-  display:inline-block;
-  background:linear-gradient(135deg,var(--pk),#d0587a);
-  color:#fff;font-size:10px;font-weight:700;
-  padding:3px 10px;border-radius:20px;margin-bottom:8px;
-  white-space:nowrap;
-}
+.vc-av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--rose2),var(--rose));color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.vc-profile>div{min-width:0;}
+.vc-name{font-size:13px;font-weight:700;}
+.vc-meta{font-size:11px;color:var(--mid);margin-top:1px;word-break:normal;overflow-wrap:break-word;}
+.vc-tag{display:inline-block;background:linear-gradient(135deg,var(--rose),#a83a5a);color:#fff;font-size:10px;font-weight:700;padding:3px 11px;border-radius:20px;margin-bottom:8px;}
 .vc-stars{color:#f5a623;font-size:13px;letter-spacing:2px;margin-bottom:8px;}
 .vc-txt{font-size:13px;line-height:2;color:var(--tx);overflow-wrap:break-word;word-break:normal;}
 
-/* ─── MENU ─── */
+/* ── MENU ── */
 .menu-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px;}
 @media(min-width:768px){.menu-grid{grid-template-columns:1fr 1fr;}}
-.mc{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 4px 20px rgba(232,131,155,.14);}
-.mc-img{position:relative;height:200px;overflow:hidden;}
+.mc{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 4px 22px rgba(201,94,123,.12);}
+.mc-img{position:relative;height:195px;overflow:hidden;}
 .mc-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%;}
 .mc-ov{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,rgba(0,0,0,.65) 100%);}
 .mc-ttl{position:absolute;bottom:14px;left:16px;font-size:18px;font-weight:900;color:#fff;font-family:'Noto Serif JP',serif;}
 .mc-body{padding:18px;}
 .mc-desc{font-size:13px;color:var(--mid);line-height:1.9;margin-bottom:12px;overflow-wrap:break-word;}
 .mc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
-.mc-tag{background:var(--pk3);color:var(--pk);font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;}
-.mc-row{display:flex;justify-content:space-between;align-items:flex-end;padding-top:12px;border-top:1px solid var(--pk3);}
-.mc-lbl{font-size:10px;color:var(--pk);font-weight:700;letter-spacing:1px;margin-bottom:2px;}
+.mc-tag{background:var(--rose3);color:var(--rose);font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;}
+.mc-row{display:flex;justify-content:space-between;align-items:flex-end;padding-top:12px;border-top:1px solid var(--rose3);}
+.mc-lbl{font-size:10px;color:var(--rose);font-weight:700;letter-spacing:1px;margin-bottom:2px;}
 .mc-price{font-family:'Noto Serif JP',serif;font-size:28px;font-weight:900;color:var(--tx);line-height:1;}
 .mc-price small{font-size:12px;font-weight:400;}
-.mc-btn{
-  background:linear-gradient(135deg,var(--pk) 0%,#d0587a 100%);
-  color:#fff;padding:11px 18px;border-radius:8px;
-  font-size:12px;font-weight:700;white-space:nowrap;
-}
+.mc-btn{background:linear-gradient(135deg,var(--rose),#a83a5a);color:#fff;padding:11px 18px;border-radius:50px;font-size:12px;font-weight:700;white-space:nowrap;}
 
-/* ─── GALLERY ─── */
-.gallery{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:150px 150px;gap:4px;width:100%;overflow:hidden;}
-@media(min-width:768px){.gallery{grid-template-columns:2fr 1fr 1fr;grid-template-rows:220px 220px;}}
+/* ── GALLERY ── */
+.gallery{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:150px 150px;gap:4px;width:100%;}
+@media(min-width:768px){.gallery{grid-template-columns:2fr 1fr 1fr;grid-template-rows:210px 210px;}}
 .gl-c{overflow:hidden;}
 .gl-c img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s;}
-.gl-c:hover img{transform:scale(1.04);}
+.gl-c:hover img{transform:scale(1.05);}
 .gl-c.main{grid-row:span 2;}
 
-/* ─── TRAINER ─── */
+/* ── TRAINER ── */
 .trainer-grid{display:grid;grid-template-columns:1fr;gap:28px;margin-top:28px;}
-@media(min-width:768px){.trainer-grid{grid-template-columns:340px 1fr;gap:52px;align-items:start;}}
-.trainer-photo-wrap{position:relative;max-width:300px;margin:0 auto;}
+@media(min-width:768px){.trainer-grid{grid-template-columns:320px 1fr;gap:52px;align-items:start;}}
+.trainer-photo-wrap{position:relative;max-width:280px;margin:0 auto;}
 @media(min-width:768px){.trainer-photo-wrap{max-width:none;}}
-.trainer-photo{border-radius:18px;overflow:hidden;aspect-ratio:3/4;}
+.trainer-photo{border-radius:20px;overflow:hidden;aspect-ratio:3/4;}
 .trainer-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;}
-.t-badge{
-  position:absolute;bottom:16px;left:-12px;
-  background:linear-gradient(135deg,var(--pk) 0%,#d0587a 100%);
-  border-radius:12px;padding:10px 14px;text-align:center;
-  box-shadow:0 4px 14px rgba(232,131,155,.45);
-}
+.t-badge{position:absolute;bottom:16px;left:-12px;background:linear-gradient(135deg,var(--rose),#a83a5a);border-radius:14px;padding:10px 16px;text-align:center;box-shadow:0 4px 16px rgba(201,94,123,.45);}
 .t-badge-big{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:900;color:#fff;line-height:1;}
 .t-badge-sm{font-size:9px;color:rgba(255,255,255,.85);letter-spacing:1px;margin-top:2px;}
-.t-en{font-size:10px;letter-spacing:3px;color:var(--light);text-transform:uppercase;margin-bottom:4px;}
+.t-en{font-size:10px;letter-spacing:3px;color:var(--lt);text-transform:uppercase;margin-bottom:4px;}
 .t-jp{font-size:14px;font-weight:700;color:var(--tx);margin-bottom:10px;}
-.t-cert{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--pk3);color:var(--pk);
-  font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;
-  margin-bottom:14px;
-}
+.t-cert{display:inline-flex;align-items:center;gap:6px;background:var(--rose3);color:var(--rose);font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;margin-bottom:14px;}
 .t-bio{font-size:13px;color:var(--mid);line-height:2;margin-bottom:18px;overflow-wrap:break-word;}
 .t-stats{display:flex;gap:24px;margin-bottom:20px;}
-.t-snum{font-family:'Noto Serif JP',serif;font-size:32px;font-weight:900;color:var(--pk);line-height:1;}
-.t-snum small{font-size:16px;}
+.t-snum{font-family:'Noto Serif JP',serif;font-size:32px;font-weight:900;color:var(--rose);line-height:1;}
+.t-snum small{font-size:15px;}
 .t-slbl{font-size:11px;color:var(--mid);margin-top:3px;}
 
-/* ─── ACCESS ─── */
+/* ── ACCESS ── */
 .access-grid{display:grid;grid-template-columns:1fr;}
 @media(min-width:768px){.access-grid{grid-template-columns:1fr 1fr;}}
-.access-photo{height:250px;overflow:hidden;}
-@media(min-width:768px){.access-photo{height:auto;min-height:360px;}}
+.access-photo{height:240px;overflow:hidden;}
+@media(min-width:768px){.access-photo{height:auto;min-height:340px;}}
 .access-photo img{width:100%;height:100%;object-fit:cover;object-position:center;}
 .access-info{padding:40px 24px;}
-@media(min-width:768px){.access-info{padding:56px 52px;}}
+@media(min-width:768px){.access-info{padding:52px;}}
 .a-rows{margin-top:20px;display:flex;flex-direction:column;gap:12px;}
 .a-row{display:flex;gap:14px;font-size:13px;line-height:1.8;}
-.a-lbl{color:var(--pk);font-weight:700;flex-shrink:0;width:70px;}
+.a-lbl{color:var(--rose);font-weight:700;flex-shrink:0;width:68px;}
 .a-val{color:var(--mid);overflow-wrap:break-word;min-width:0;flex:1;}
 
-/* ─── BANNER ─── */
-.banner{position:relative;overflow:hidden;}
-.banner img.banner-bg{width:100%;height:300px;object-fit:cover;object-position:center 30%;}
-@media(min-width:768px){.banner img.banner-bg{height:420px;}}
-.banner-ov{position:absolute;inset:0;}
-.banner-body{
-  position:absolute;inset:0;z-index:2;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:32px 24px;
-}
-@media(min-width:768px){.banner-body{padding:56px 80px;max-width:700px;}}
-.banner-body .ttl{color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.3);}
-
-/* ─── FINAL CTA ─── */
+/* ── FINAL CTA ── */
 .final{
   position:relative;overflow:hidden;
   padding:72px 20px;text-align:center;
-  background:var(--blush);
+  background:linear-gradient(160deg,var(--rose3) 0%,var(--blush) 100%);
 }
-.final-body{position:relative;z-index:2;}
-.final-price{
-  font-family:'Noto Serif JP',serif;
-  font-size:clamp(52px,14vw,80px);font-weight:900;color:var(--tx);
-  line-height:1;margin:6px 0 4px;
+.final::before{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:300px;height:300px;border-radius:50%;
+  background:rgba(201,94,123,.06);pointer-events:none;
 }
-.final-price small{font-size:clamp(22px,5.5vw,36px);}
+.final-price{font-family:'Noto Serif JP',serif;font-size:clamp(52px,14vw,80px);font-weight:900;color:var(--tx);line-height:1;margin:6px 0 4px;}
+.final-price small{font-size:clamp(22px,5vw,34px);}
 .final-note{font-size:12px;color:var(--mid);margin-bottom:24px;}
 .btn-big{
   display:block;width:100%;max-width:400px;margin:0 auto;
-  background:linear-gradient(135deg,var(--pk) 0%,#d0587a 100%);
-  color:#fff;padding:22px 24px;border-radius:14px;
+  background:linear-gradient(135deg,var(--rose),#a83a5a);
+  color:#fff;padding:22px 24px;border-radius:60px;
   font-size:17px;font-weight:900;text-align:center;
-  box-shadow:0 8px 30px rgba(232,131,155,.55);
-  letter-spacing:.3px;
+  box-shadow:0 8px 30px rgba(201,94,123,.5);
+  letter-spacing:.2px;
 }
-.reserve-box{
-  margin:24px auto 0;padding:20px 22px;
-  background:#fff;border-radius:14px;
-  display:inline-block;text-align:left;max-width:380px;width:100%;
-  box-shadow:0 2px 12px rgba(232,131,155,.1);
-}
-.reserve-box p:first-child{font-size:12px;font-weight:700;color:var(--pk);margin-bottom:8px;}
-.reserve-box p:last-child{font-size:12px;color:var(--mid);line-height:2.1;}
+.reserve-box{margin:24px auto 0;padding:20px;background:#fff;border-radius:16px;display:inline-block;text-align:left;max-width:380px;width:100%;box-shadow:0 2px 14px rgba(201,94,123,.08);}
+.reserve-box .rb-lbl{font-size:12px;font-weight:700;color:var(--rose);margin-bottom:8px;}
+.reserve-box .rb-txt{font-size:12px;color:var(--mid);line-height:2.1;}
 
-/* ─── FOOTER ─── */
-footer{
-  background:#3d1a24;padding:32px 24px 80px;text-align:center;
-}
+/* ── FOOTER ── */
+footer{background:#2e1018;padding:32px 24px 80px;text-align:center;}
 .ft-logo{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:900;color:#fff;margin-bottom:4px;}
-.ft-logo b{color:var(--pk2);}
-.ft-sub{font-size:10px;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;}
-footer p{font-size:11px;color:rgba(255,255,255,.35);}
+.ft-logo b{color:var(--rose2);}
+.ft-sub{font-size:9px;color:rgba(255,255,255,.3);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+footer p{font-size:11px;color:rgba(255,255,255,.3);}
 
-/* ─── MT / TC ─── */
+/* ── UTIL ── */
 .mt32{margin-top:32px;}
 .tc{text-align:center;}
-  </style>
+</style>
 </head>
 <body>
 
-<!-- FLOAT CTA -->
 <a href="#reserve" class="fcta"><div class="dot"></div>体験 1,100円 予約する</a>
 
-<!-- HEADER -->
 <header id="hd">
   <div>
     <div class="logo">Body<b>Nate</b></div>
@@ -568,120 +475,97 @@ footer p{font-size:11px;color:rgba(255,255,255,.35);}
   <a href="#reserve" class="hcta">体験予約 →</a>
 </header>
 
-<!-- ===== HERO ===== -->
+<!-- ══ HERO ══ -->
 <section class="hero">
-  <img class="hero-bg" src="assets/Bridal - 26.PNG" alt="Body Nate パーソナルトレーニング">
-  <div class="hero-ov"></div>
-  <!-- 価格バッジ（PC） -->
-  <div class="hero-pricebar">
-    <div class="hp-lbl">体験レッスン</div>
-    <div class="hp-price"><small>¥</small>1,100</div>
-    <div class="hp-note">50分 / 完全予約制</div>
+  <!-- 花びら風の装飾 -->
+  <div class="hero-deco">
+    <svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <ellipse cx="300" cy="200" rx="180" ry="280" fill="white" transform="rotate(-25 300 200)"/>
+      <ellipse cx="200" cy="350" rx="140" ry="220" fill="white" transform="rotate(15 200 350)"/>
+      <circle cx="320" cy="450" r="120" fill="white"/>
+      <ellipse cx="80" cy="150" rx="90" ry="160" fill="white" transform="rotate(30 80 150)"/>
+    </svg>
   </div>
+
+  <!-- PC価格バッジ -->
+  <div class="hero-price-pc">
+    <div class="hpp-lbl">初回体験レッスン</div>
+    <div class="hpp-price"><small>¥</small>1,100</div>
+    <div class="hpp-note">50分 / 完全予約制</div>
+  </div>
+
   <!-- 左上タグ -->
-  <div class="hero-badge-tl">
-    <span class="hbtl-pill">理学療法士が担当</span>
-    <span class="hbtl-sep">/</span>
-    <span class="hbtl-txt">神戸三宮</span>
+  <div class="hero-tag">
+    <span class="htag-pill">理学療法士が担当</span>
+    <span class="htag-txt">/ 神戸三宮</span>
   </div>
-  <!-- メインコピー -->
-  <div class="hero-text">
-    <p class="hero-en">Personal Training × Seitai × Motion Analysis</p>
+
+  <div class="hero-txt">
+    <p class="hero-en">Body Nate · Personal Training</p>
     <h1 class="hero-h1">
-      何度挫折しても<br>
-      <em>大丈夫。</em><br>
-      必ず変われます。
+      理想の体型へ、<br><em>最短ルートで。</em>
     </h1>
-    <p class="hero-sub-copy">
-      理学療法士が「変われない本当の原因」を特定。<br>
-      動作分析 × 整体 × トレーニングで根本から解決します。
+    <p class="hero-sub">
+      理学療法士が「変われない原因」を特定。<br>
+      動作分析 × 整体 × トレーニングで根本から解決。
     </p>
-    <a href="#reserve" class="hero-cta">🌸 体験レッスンを予約する（1,100円）→</a>
+    <a href="#reserve" class="btn-hero">🌸 体験レッスンを予約する（1,100円）→</a>
+  </div>
+
+  <div class="hero-bar">
+    <div class="hbar-l">初回体験 50分</div>
+    <div class="hbar-p"><small style="font-size:14px">¥</small>1,100</div>
   </div>
 </section>
 
-<!-- ===== 3つの理由（ヒーロー直下・スクロールなしで見える） ===== -->
+<!-- ══ 3 REASONS ══ -->
 <div class="reasons">
   <div class="reasons-hd">
-    <p class="reasons-hd-txt">Body Nateが選ばれる <span>3つ</span> の理由</p>
+    <p>Body Nateが選ばれる <span>3つ</span> の理由</p>
   </div>
   <div class="reasons-grid">
-
     <div class="r-item">
-      <div class="r-num-wrap">
-        <span class="r-wing">
-          <svg viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 10 C6 4, 12 2, 18 6 C22 8, 26 5, 26 5" stroke="#e8839b" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-            <path d="M2 8 C5 3, 10 1, 16 5" stroke="#f4b8cb" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-          </svg>
-        </span>
+      <div class="r-num-row">
+        <span class="r-w"><svg viewBox="0 0 26 10" fill="none"><path d="M2 8C6 3 12 1 18 5s6 4 6 4" stroke="#c95e7b" stroke-width="1.6" stroke-linecap="round"/><path d="M2 6C5 2 10 1 15 4" stroke="#e8a0b4" stroke-width="1.2" stroke-linecap="round"/></svg></span>
         <span class="r-num">01</span>
-        <span class="r-wing flip">
-          <svg viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 10 C6 4, 12 2, 18 6 C22 8, 26 5, 26 5" stroke="#e8839b" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-            <path d="M2 8 C5 3, 10 1, 16 5" stroke="#f4b8cb" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-          </svg>
-        </span>
+        <span class="r-w flip"><svg viewBox="0 0 26 10" fill="none"><path d="M2 8C6 3 12 1 18 5s6 4 6 4" stroke="#c95e7b" stroke-width="1.6" stroke-linecap="round"/><path d="M2 6C5 2 10 1 15 4" stroke="#e8a0b4" stroke-width="1.2" stroke-linecap="round"/></svg></span>
       </div>
       <div class="r-icon">🩺</div>
       <div class="r-ttl"><em>理学療法士</em>が<br>マンツーマン担当</div>
-      <p class="r-txt">医療国家資格者が骨格・動作を科学的に分析。安全に・確実に結果を出します。</p>
+      <p class="r-sub">医療国家資格者が骨格・動作を分析。安全に確実に結果を出します。</p>
     </div>
-
     <div class="r-item">
-      <div class="r-num-wrap">
-        <span class="r-wing">
-          <svg viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 10 C6 4, 12 2, 18 6 C22 8, 26 5, 26 5" stroke="#e8839b" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-            <path d="M2 8 C5 3, 10 1, 16 5" stroke="#f4b8cb" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-          </svg>
-        </span>
+      <div class="r-num-row">
+        <span class="r-w"><svg viewBox="0 0 26 10" fill="none"><path d="M2 8C6 3 12 1 18 5s6 4 6 4" stroke="#c95e7b" stroke-width="1.6" stroke-linecap="round"/><path d="M2 6C5 2 10 1 15 4" stroke="#e8a0b4" stroke-width="1.2" stroke-linecap="round"/></svg></span>
         <span class="r-num">02</span>
-        <span class="r-wing flip">
-          <svg viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 10 C6 4, 12 2, 18 6 C22 8, 26 5, 26 5" stroke="#e8839b" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-            <path d="M2 8 C5 3, 10 1, 16 5" stroke="#f4b8cb" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-          </svg>
-        </span>
+        <span class="r-w flip"><svg viewBox="0 0 26 10" fill="none"><path d="M2 8C6 3 12 1 18 5s6 4 6 4" stroke="#c95e7b" stroke-width="1.6" stroke-linecap="round"/><path d="M2 6C5 2 10 1 15 4" stroke="#e8a0b4" stroke-width="1.2" stroke-linecap="round"/></svg></span>
       </div>
       <div class="r-icon">🔍</div>
       <div class="r-ttl"><em>動作分析</em>で<br>原因を特定</div>
-      <p class="r-txt">なんとなく運動ではなく「変われない理由」を明確にしてから始めるから効果が違います。</p>
+      <p class="r-sub">なんとなく運動ではなく「変われない理由」を明確にしてから始めます。</p>
     </div>
-
     <div class="r-item">
-      <div class="r-num-wrap">
-        <span class="r-wing">
-          <svg viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 10 C6 4, 12 2, 18 6 C22 8, 26 5, 26 5" stroke="#e8839b" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-            <path d="M2 8 C5 3, 10 1, 16 5" stroke="#f4b8cb" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-          </svg>
-        </span>
+      <div class="r-num-row">
+        <span class="r-w"><svg viewBox="0 0 26 10" fill="none"><path d="M2 8C6 3 12 1 18 5s6 4 6 4" stroke="#c95e7b" stroke-width="1.6" stroke-linecap="round"/><path d="M2 6C5 2 10 1 15 4" stroke="#e8a0b4" stroke-width="1.2" stroke-linecap="round"/></svg></span>
         <span class="r-num">03</span>
-        <span class="r-wing flip">
-          <svg viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 10 C6 4, 12 2, 18 6 C22 8, 26 5, 26 5" stroke="#e8839b" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-            <path d="M2 8 C5 3, 10 1, 16 5" stroke="#f4b8cb" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-          </svg>
-        </span>
+        <span class="r-w flip"><svg viewBox="0 0 26 10" fill="none"><path d="M2 8C6 3 12 1 18 5s6 4 6 4" stroke="#c95e7b" stroke-width="1.6" stroke-linecap="round"/><path d="M2 6C5 2 10 1 15 4" stroke="#e8a0b4" stroke-width="1.2" stroke-linecap="round"/></svg></span>
       </div>
       <div class="r-icon">✨</div>
       <div class="r-ttl"><em>整体＋トレーニング</em><br>のW効果</div>
-      <p class="r-txt">骨格を整えてから鍛えるから腰痛・肩こりも同時に改善。続けやすい体に。</p>
+      <p class="r-sub">骨格を整えてから鍛えるから腰痛・肩こりも同時改善。</p>
     </div>
-
   </div>
 </div>
 
 <!-- MARQUEE -->
 <div class="mq-wrap">
   <div class="mq">
-    <span class="mq-item">理学療法士が担当</span><span class="mq-item">動作分析で根本改善</span><span class="mq-item">整体×トレーニング</span><span class="mq-item">体験 1,100円</span><span class="mq-item">30代・40代・50代女性に支持</span><span class="mq-item">神戸三宮</span><span class="mq-item">理学療法士が担当</span><span class="mq-item">動作分析で根本改善</span><span class="mq-item">整体×トレーニング</span><span class="mq-item">体験 1,100円</span><span class="mq-item">30代・40代・50代女性に支持</span><span class="mq-item">神戸三宮</span>
+    <span class="mq-i">理学療法士が担当</span><span class="mq-i">動作分析で根本改善</span><span class="mq-i">整体×トレーニング</span><span class="mq-i">体験 1,100円</span><span class="mq-i">30代・40代・50代女性に支持</span><span class="mq-i">神戸三宮</span><span class="mq-i">理学療法士が担当</span><span class="mq-i">動作分析で根本改善</span><span class="mq-i">整体×トレーニング</span><span class="mq-i">体験 1,100円</span><span class="mq-i">30代・40代・50代女性に支持</span><span class="mq-i">神戸三宮</span>
   </div>
 </div>
 
-<!-- ===== CONCERNS ===== -->
-<section class="sec bg-white" id="about">
+<!-- ══ CONCERNS ══ -->
+<section class="sec bg-w" id="about">
   <div class="wrap">
     <div class="rv">
       <div class="lbl">こんなお悩みありませんか？</div>
@@ -707,8 +591,8 @@ footer p{font-size:11px;color:rgba(255,255,255,.35);}
   </div>
 </section>
 
-<!-- ===== PT FEATURE ===== -->
-<section class="sec bg-pale" id="pt">
+<!-- ══ PT FEATURE ══ -->
+<section class="sec bg-c" id="pt">
   <div class="wrap">
     <div class="rv">
       <div class="lbl">理学療法士が担当するから</div>
@@ -730,17 +614,17 @@ footer p{font-size:11px;color:rgba(255,255,255,.35);}
   </div>
 </section>
 
-<!-- CTA BAND 1 -->
+<!-- CTA BAND -->
 <div class="cband">
   <div>
-    <div class="cband-txt">まず1回、<span>体験してみてください。</span></div>
-    <div style="font-size:12px;color:rgba(255,255,255,.75);margin-top:6px;">通常10,000円のレッスンが → 今だけ体験価格<strong style="color:#ffd4d0;font-size:16px;"> 1,100円</strong></div>
+    <div class="cband-ttl">まず1回、<span>体験してみてください。</span></div>
+    <div class="cband-note" style="margin-top:6px;">通常10,000円 → 今だけ体験価格 <strong style="color:#ffd4dc;font-size:16px;">1,100円</strong></div>
   </div>
   <a href="#reserve" class="btn-wh">今すぐ体験を予約する →</a>
 </div>
 
-<!-- ===== MOTION ===== -->
-<section class="sec bg-white">
+<!-- ══ MOTION ══ -->
+<section class="sec bg-w">
   <div class="wrap">
     <div class="rv">
       <div class="lbl">Body Nateの特徴</div>
@@ -761,71 +645,43 @@ footer p{font-size:11px;color:rgba(255,255,255,.35);}
   </div>
 </section>
 
-<!-- BANNER -->
-<div class="banner">
-  <img class="banner-bg" src="assets/Bridal - 27.PNG" alt="トレーニング">
-  <div class="banner-ov" style="background:linear-gradient(150deg,rgba(232,131,155,.72),rgba(120,30,60,.52));"></div>
-  <div class="banner-body rv">
-    <h2 class="ttl">通い始めて<em>1ヶ月</em>で、<br>体が変わりはじめる。</h2>
-    <p class="lead" style="color:rgba(255,255,255,.88);margin-bottom:24px;">30〜50代の女性が続々と体型変化を実感。<br>あなたの「変わりたい」を、本気でサポートします。</p>
-    <a href="#reserve" class="btn-wh" style="display:inline-block;padding:16px 36px;font-size:15px;font-weight:900;border-radius:50px;">体験レッスンを予約する</a>
-  </div>
+<!-- ══ HIGHLIGHT BANNER (CSSのみ) ══ -->
+<div class="hbanner rv">
+  <h2 class="ttl" style="max-width:520px;margin:0 auto 16px;">通い始めて<em>1ヶ月</em>で、<br>体が変わりはじめる。</h2>
+  <p class="lead" style="max-width:480px;margin:0 auto 28px;">30〜50代の女性が続々と体型変化を実感。あなたの「変わりたい」を本気でサポートします。</p>
+  <a href="#reserve" class="btn-wh" style="display:inline-block;padding:16px 40px;font-size:15px;">体験レッスンを予約する</a>
 </div>
 
-<!-- ===== BEFORE/AFTER ===== -->
-<section class="sec bg-pale">
+<!-- ══ BEFORE/AFTER ══ -->
+<section class="sec bg-c">
   <div class="wrap">
     <div class="rv" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px;margin-bottom:4px;">
       <div>
         <div class="lbl">実績</div>
         <h2 class="ttl">お客様の<em>ビフォーアフター</em></h2>
       </div>
-      <span style="font-size:12px;color:var(--light);">← スワイプで見る →</span>
+      <span style="font-size:12px;color:var(--lt);">← スワイプで見る →</span>
     </div>
   </div>
   <div class="ba-outer">
     <div class="ba-row">
-      <div class="ba-card">
-        <img src="assets/IMG_1132.jpg" alt="BA1">
-        <div class="ba-info"><div class="ba-lbl">ウエスト<b style="color:var(--pk)">-6cm</b>・背中スッキリ</div><div class="ba-tag">2ヶ月</div></div>
-        <div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「背中の肉が消えた！と言われました」 40代 / 主婦</div>
-      </div>
-      <div class="ba-card">
-        <img src="assets/IMG_1133.jpg" alt="BA2">
-        <div class="ba-info"><div class="ba-lbl">ウエスト<b style="color:var(--pk)">-5cm</b>・全体引き締まった</div><div class="ba-tag">3ヶ月</div></div>
-        <div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「体重変わらずに服のサイズが！」 38歳</div>
-      </div>
-      <div class="ba-card">
-        <img src="assets/IMG_0893 2.jpg" alt="BA3">
-        <div class="ba-info"><div class="ba-lbl">お腹周り<b style="color:var(--pk)">-8cm</b>・横ライン激変</div><div class="ba-tag">2ヶ月</div></div>
-        <div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「お腹がぺたんこに！」 42歳 / 産後</div>
-      </div>
-      <div class="ba-card">
-        <img src="assets/IMG_0894 2.JPG" alt="BA4">
-        <div class="ba-info"><div class="ba-lbl">体重<b style="color:var(--pk)">-4kg</b>・ウエスト・太もも変化</div><div class="ba-tag">3ヶ月</div></div>
-        <div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「食事制限なしでここまで！」 35歳</div>
-      </div>
-      <div class="ba-card">
-        <img src="assets/IMG_0885 2.JPG" alt="BA5">
-        <div class="ba-info"><div class="ba-lbl">体重<b style="color:var(--pk)">-3kg</b>・背中・ヒップスッキリ</div><div class="ba-tag">4ヶ月</div></div>
-        <div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「腰痛も改善されて毎日楽です」 49歳</div>
-      </div>
-      <div class="ba-card">
-        <img src="assets/IMG_0888 2.JPG" alt="BA6">
-        <div class="ba-info"><div class="ba-lbl">体重<b style="color:var(--pk)">-5kg</b>・上半身・背中スッキリ</div><div class="ba-tag">3ヶ月</div></div>
-        <div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「ワンピースが入るようになった！」 44歳</div>
-      </div>
+      <div class="ba-card"><img src="assets/IMG_1132.jpg" alt="BA1"><div class="ba-info"><div class="ba-lbl">ウエスト<b style="color:var(--rose)">-6cm</b>・背中スッキリ</div><div class="ba-tag">2ヶ月</div></div><div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「背中の肉が消えた！」 40代 / 主婦</div></div>
+      <div class="ba-card"><img src="assets/IMG_1133.jpg" alt="BA2"><div class="ba-info"><div class="ba-lbl">ウエスト<b style="color:var(--rose)">-5cm</b>・全体引き締まった</div><div class="ba-tag">3ヶ月</div></div><div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「服のサイズが変わりました！」 38歳</div></div>
+      <div class="ba-card"><img src="assets/IMG_0893 2.jpg" alt="BA3"><div class="ba-info"><div class="ba-lbl">お腹周り<b style="color:var(--rose)">-8cm</b>・横ライン激変</div><div class="ba-tag">2ヶ月</div></div><div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「お腹がぺたんこに！」 42歳 / 産後</div></div>
+      <div class="ba-card"><img src="assets/IMG_0894 2.JPG" alt="BA4"><div class="ba-info"><div class="ba-lbl">体重<b style="color:var(--rose)">-4kg</b>・ウエスト・太もも変化</div><div class="ba-tag">3ヶ月</div></div><div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「食事制限なしでここまで！」 35歳</div></div>
+      <div class="ba-card"><img src="assets/IMG_0885 2.JPG" alt="BA5"><div class="ba-info"><div class="ba-lbl">体重<b style="color:var(--rose)">-3kg</b>・背中・ヒップスッキリ</div><div class="ba-tag">4ヶ月</div></div><div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「腰痛も改善されました」 49歳</div></div>
+      <div class="ba-card"><img src="assets/IMG_0888 2.JPG" alt="BA6"><div class="ba-info"><div class="ba-lbl">体重<b style="color:var(--rose)">-5kg</b>・上半身スッキリ</div><div class="ba-tag">3ヶ月</div></div><div style="padding:0 14px 12px;font-size:11px;color:var(--mid);line-height:1.6;">「ワンピースが入りました！」 44歳</div></div>
     </div>
   </div>
   <div class="wrap mt32 rv tc">
-    <p style="font-size:11px;color:var(--light);margin-bottom:12px;">※個人差があります。写真はすべて実際のお客様です。</p>
-    <a href="#reserve" class="btn-main" style="display:inline-block;padding:20px 48px;font-size:16px;border-radius:50px;">🌸 私も体験してみる（1,100円）</a>
-    <p style="font-size:11px;color:var(--light);margin-top:10px;">通常10,000円 → 初回のみ特別価格 / 強制入会なし</p>
+    <p style="font-size:11px;color:var(--lt);margin-bottom:14px;">※個人差があります。写真はすべて実際のお客様です。</p>
+    <a href="#reserve" class="btn-main" style="display:inline-block;padding:20px 52px;font-size:16px;">🌸 私も体験してみる（1,100円）</a>
+    <p style="font-size:11px;color:var(--lt);margin-top:10px;">通常10,000円 → 初回のみ特別価格 / 強制入会なし</p>
   </div>
 </section>
 
-<!-- ===== VOICES ===== -->
-<section class="sec bg-white">
+<!-- ══ VOICES ══ -->
+<section class="sec bg-w">
   <div class="wrap">
     <div class="rv">
       <div class="lbl">お客様の声</div>
@@ -833,37 +689,19 @@ footer p{font-size:11px;color:rgba(255,255,255,.35);}
     </div>
     <div class="voices-grid">
       <div class="vc rv">
-        <div class="vc-profile">
-          <div class="vc-av">👩</div>
-          <div>
-            <div class="vc-name">Y.Mさん</div>
-            <div class="vc-meta">42歳 / 産後2年・お腹まわりが悩み</div>
-          </div>
-        </div>
+        <div class="vc-profile"><div class="vc-av">👩</div><div><div class="vc-name">Y.Mさん</div><div class="vc-meta">42歳 / 産後2年・お腹まわりが悩み</div></div></div>
         <div class="vc-tag">体重-4kg / 3ヶ月</div>
         <div class="vc-stars">★★★★★</div>
         <p class="vc-txt">産後から2年間、何をやっても体型が戻らなくて諦めていました。ここでは動作分析で「骨盤のゆがみが原因」とわかって。正しいアプローチをしたら3ヶ月で体重-4kg、お腹周り-8cmも細くなりました。出産前より綺麗かも、と主人に言われました（笑）</p>
       </div>
       <div class="vc rv">
-        <div class="vc-profile">
-          <div class="vc-av">👩</div>
-          <div>
-            <div class="vc-name">K.Hさん</div>
-            <div class="vc-meta">44歳 / 何をやっても変わらなかった</div>
-          </div>
-        </div>
+        <div class="vc-profile"><div class="vc-av">👩</div><div><div class="vc-name">K.Hさん</div><div class="vc-meta">44歳 / 何をやっても変わらなかった</div></div></div>
         <div class="vc-tag">ウエスト-6cm / 2ヶ月</div>
         <div class="vc-stars">★★★★★</div>
         <p class="vc-txt">ジムにも通ったし、食事制限もした。でも全然変わらなくて「もう無理なのかな」って思ってた40代。ここに来て姿勢と使えてない筋肉を教えてもらったら、たった2ヶ月で背中の肉が消えました。友達に「痩せた？」って何人にも言われて嬉しかったです。</p>
       </div>
       <div class="vc rv">
-        <div class="vc-profile">
-          <div class="vc-av">👩</div>
-          <div>
-            <div class="vc-name">T.Nさん</div>
-            <div class="vc-meta">51歳 / 腰痛持ち・ダイエット諦めてた</div>
-          </div>
-        </div>
+        <div class="vc-profile"><div class="vc-av">👩</div><div><div class="vc-name">T.Nさん</div><div class="vc-meta">51歳 / 腰痛持ち・ダイエット諦めてた</div></div></div>
         <div class="vc-tag">体重-5kg / 3ヶ月</div>
         <div class="vc-stars">★★★★★</div>
         <p class="vc-txt">50代で体が変わるか半信半疑で来たんですが、理学療法士さんが腰痛のことも一緒に診てくれて本当に助かりました。今まで運動できなかった腰の痛みが改善されて、気づいたら体重も-5kg。昔着れなかった服が入るようになって毎日楽しいです。</p>
@@ -873,15 +711,14 @@ footer p{font-size:11px;color:rgba(255,255,255,.35);}
 </section>
 
 <!-- CTA after voices -->
-<div style="background:var(--blush);padding:40px 20px;text-align:center;border-top:2px solid var(--pk2);">
-  <p style="font-size:14px;color:var(--mid);margin-bottom:8px;">このお客様たちも、最初は体験1回から始めました。</p>
+<div style="background:var(--blush);padding:40px 20px;text-align:center;border-top:2px solid var(--rose2);">
   <p style="font-family:'Noto Serif JP',serif;font-size:20px;font-weight:900;color:var(--tx);margin-bottom:20px;">あなたも、まず1回試してみませんか？</p>
-  <a href="#reserve" class="btn-main" style="display:inline-block;padding:20px 48px;font-size:16px;border-radius:50px;">体験レッスンを予約する（1,100円）</a>
-  <p style="font-size:11px;color:var(--light);margin-top:12px;">通常10,000円 → 初回体験のみ1,100円・強制入会なし</p>
+  <a href="#reserve" class="btn-main" style="display:inline-block;padding:20px 52px;font-size:16px;">体験レッスンを予約する（1,100円）</a>
+  <p style="font-size:11px;color:var(--lt);margin-top:12px;">通常10,000円 → 初回体験のみ1,100円・強制入会なし</p>
 </div>
 
-<!-- ===== MENU ===== -->
-<section class="sec bg-white">
+<!-- ══ MENU ══ -->
+<section class="sec bg-w">
   <div class="wrap">
     <div class="rv">
       <div class="lbl">メニュー</div>
@@ -915,8 +752,8 @@ footer p{font-size:11px;color:rgba(255,255,255,.35);}
   <div class="gl-c"><img src="assets/IMG_8592 2.jpg" alt="カウンセリング"></div>
 </div>
 
-<!-- ===== TRAINER ===== -->
-<section class="sec bg-white">
+<!-- ══ TRAINER ══ -->
+<section class="sec bg-w">
   <div class="wrap">
     <div class="rv">
       <div class="lbl">担当トレーナー</div>
@@ -924,28 +761,19 @@ footer p{font-size:11px;color:rgba(255,255,255,.35);}
     </div>
     <div class="trainer-grid">
       <div class="trainer-photo-wrap rv">
-        <div class="trainer-photo">
-          <img src="assets/IMG_6811.JPG" alt="トレーナープロフィール">
-        </div>
-        <div class="t-badge">
-          <div class="t-badge-big">PT</div>
-          <div class="t-badge-sm">理学療法士</div>
-        </div>
+        <div class="trainer-photo"><img src="assets/IMG_6811.JPG" alt="トレーナー"></div>
+        <div class="t-badge"><div class="t-badge-big">PT</div><div class="t-badge-sm">理学療法士</div></div>
       </div>
-      <div class="trainer-info rv">
+      <div class="rv">
         <div class="t-en">Trainer</div>
         <div class="t-jp">Body Nate 神戸三宮店</div>
         <div class="t-cert">🏥 理学療法士（国家資格）</div>
-        <p class="t-bio">
-          理学療法士として医療現場で培った「体の見かた」を活かし、Body Nateを立ち上げました。<br><br>
-          「なぜ変われないのか」を医療的な視点で分析し、痛みのない・疲れにくい・美しい体づくりをサポートします。<br><br>
-          30〜50代女性特有のお悩み（産後体型・更年期・慢性痛）に寄り添い、一人ひとりに最適なプログラムを提供します。
-        </p>
+        <p class="t-bio">理学療法士として医療現場で培った「体の見かた」を活かし、Body Nateを立ち上げました。<br><br>「なぜ変われないのか」を医療的な視点で分析し、痛みのない・疲れにくい・美しい体づくりをサポートします。<br><br>30〜50代女性特有のお悩み（産後体型・更年期・慢性痛）に寄り添い、一人ひとりに最適なプログラムを提供します。</p>
         <div class="t-stats">
           <div><div class="t-snum">500<small>+</small></div><div class="t-slbl">施術実績</div></div>
           <div><div class="t-snum">98<small>%</small></div><div class="t-slbl">継続率</div></div>
         </div>
-        <a href="#reserve" class="btn-main" style="display:inline-block;padding:16px 32px;border-radius:50px;">このトレーナーに相談してみる →</a>
+        <a href="#reserve" class="btn-main" style="display:inline-block;padding:16px 32px;">このトレーナーに相談してみる →</a>
       </div>
     </div>
   </div>
@@ -954,55 +782,45 @@ footer p{font-size:11px;color:rgba(255,255,255,.35);}
 <!-- CTA BAND 2 -->
 <div class="cband">
   <div>
-    <div class="cband-txt">「変わりたい」その気持ち、<span>無駄にしないでください。</span></div>
-    <div style="font-size:12px;color:rgba(255,255,255,.75);margin-top:6px;">勧誘・強制入会は一切なし。体験だけでも大丈夫です。</div>
+    <div class="cband-ttl">「変わりたい」その気持ち、<span>無駄にしないでください。</span></div>
+    <div class="cband-note" style="margin-top:6px;">勧誘・強制入会は一切なし。体験だけでも大丈夫です。</div>
   </div>
   <a href="#reserve" class="btn-wh">体験予約はこちら →</a>
 </div>
 
-<!-- ===== ACCESS ===== -->
+<!-- ══ ACCESS ══ -->
 <div class="access-grid">
-  <div class="access-photo">
-    <img src="assets/IMG_8596 2.jpg" alt="Body Nate 神戸三宮店">
-  </div>
+  <div class="access-photo"><img src="assets/IMG_8596 2.jpg" alt="Body Nate 神戸三宮店"></div>
   <div class="access-info">
     <div class="lbl">アクセス</div>
     <h2 class="ttl">Body<em>Nate</em><br>神戸三宮店</h2>
     <div class="a-rows">
       <div class="a-row"><span class="a-lbl">住所</span><span class="a-val">神戸市中央区三宮<br>（詳細はご予約後にご案内します）</span></div>
-      <div class="a-row"><span class="a-lbl">営業時間</span><span class="a-val">完全予約制<br>ご希望の時間帯をご相談ください</span></div>
+      <div class="a-row"><span class="a-lbl">営業時間</span><span class="a-val">完全予約制 / ご希望の時間帯をご相談ください</span></div>
       <div class="a-row"><span class="a-lbl">アクセス</span><span class="a-val">三宮駅より徒歩圏内</span></div>
       <div class="a-row"><span class="a-lbl">駐車場</span><span class="a-val">近隣コインパーキングをご利用ください</span></div>
     </div>
   </div>
 </div>
 
-<!-- ===== FINAL CTA ===== -->
+<!-- ══ FINAL CTA ══ -->
 <section class="final" id="reserve">
-  <div class="final-body rv">
+  <div class="rv">
     <div class="lbl" style="justify-content:center;">今だけ！初回体験特別価格</div>
-    <h2 class="ttl" style="margin-top:10px;">
-      ずっと諦めてた体型、<br>
-      <em>本当は変えられます。</em>
-    </h2>
-    <p style="font-size:14px;color:var(--mid);margin-top:8px;line-height:1.9;">まず1回、動作分析＋体験レッスンを受けてみてください。<br>変われない理由がわかるだけでも、来た価値があります。</p>
-
-    <div style="margin:24px 0 4px;font-size:13px;color:var(--mid);text-decoration:line-through;">通常価格 ¥10,000</div>
+    <h2 class="ttl" style="margin-top:10px;">ずっと諦めてた体型、<br><em>本当は変えられます。</em></h2>
+    <p style="font-size:14px;color:var(--mid);margin-top:8px;line-height:1.9;margin-bottom:24px;">まず1回、動作分析＋体験レッスンを受けてみてください。</p>
+    <div style="margin-bottom:4px;font-size:13px;color:var(--mid);text-decoration:line-through;">通常価格 ¥10,000</div>
     <div class="final-price"><small>¥</small>1,100</div>
     <p class="final-note">体験レッスン 50分 ／ 完全マンツーマン ／ 理学療法士担当</p>
-
     <a href="#" class="btn-big">🌸 体験レッスンを予約する（1,100円）</a>
-
     <div class="reserve-box">
-      <p>体験レッスンで受けられること</p>
-      <p>✓ 動作分析（変われない原因がわかる）<br>✓ 骨盤・姿勢チェック<br>✓ あなた専用プログラムのご提案<br>✓ 整体 or トレーニング体験（50分）</p>
+      <p class="rb-lbl">体験レッスンで受けられること</p>
+      <p class="rb-txt">✓ 動作分析（変われない原因がわかる）<br>✓ 骨盤・姿勢チェック<br>✓ あなた専用プログラムのご提案<br>✓ 整体 or トレーニング体験（50分）</p>
     </div>
-
-    <p style="font-size:11px;color:var(--light);margin-top:20px;">強制入会なし / 当日勧誘なし / 女性専用スペースあり</p>
+    <p style="font-size:11px;color:var(--lt);margin-top:20px;">強制入会なし / 当日勧誘なし</p>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="ft-logo">Body<b>Nate</b></div>
   <div class="ft-sub">Kobe Sannomiya</div>
@@ -1010,16 +828,11 @@ footer p{font-size:11px;color:rgba(255,255,255,.35);}
 </footer>
 
 <script>
-// ─── HEADER SCROLL ───
 const hd = document.getElementById('hd');
-window.addEventListener('scroll', () => {
-  hd.classList.toggle('sc', window.scrollY > 60);
-}, { passive: true });
-
-// ─── REVEAL ───
+window.addEventListener('scroll', () => { hd.classList.toggle('sc', window.scrollY > 60); }, { passive: true });
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
-}, { threshold: 0.12 });
+}, { threshold: 0.1 });
 document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 </script>
 </body>
